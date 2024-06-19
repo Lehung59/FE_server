@@ -19,32 +19,30 @@
           @finish="createUsers()">
           <div class="row">
             <div class="col-12 ">
-              <a-form-item ref="userName" label="name" required name="userName">
+              <a-form-item ref="userName" label="Tên sản phẩm" required name="userName">
                 <a-input v-model:value="formState.userName" />
                 <small v-if="errors && errors.UserName" class="text-danger">{{ errors.UserName[0] }}</small>
               </a-form-item>
-              <a-form-item ref="price" label="price" required name="price">
+              <a-form-item ref="price" label="Giá bán" required name="price">
                 <a-input v-model:value="formState.price" />
                 <small v-if="errors && errors.price" class="text-danger">{{ errors.price[0] }}</small>
               </a-form-item>
-              <a-form-item ref="description" label="description" required name="description">
+              <a-form-item ref="description" label="Mô tả" required name="description">
                 <a-input v-model:value="formState.description" />
                 <small v-if="errors && errors.description" class="text-danger">{{ errors.description[0] }}</small>
               </a-form-item>
-              <a-form-item ref="producttypename" label="producttypename" required name="producttypename">
+              <a-form-item ref="producttypename" label="Loại sản phẩm" required name="producttypename">
                 <a-input v-model:value="formState.producttypename" />
                 <small v-if="errors && errors.producttypename" class="text-danger">{{ errors.producttypename[0]
                   }}</small>
               </a-form-item>
-              <a-form-item ref="fullName" label="avatar" name="fullName">
+              <a-form-item ref="fullName" label="Hình ảnh" name="fullName">
                 <input type="file" @change="handleFileUpload" />
                 <small v-if="errors && errors.FullName" class="text-danger">{{ errors.FullName[0] }}</small>
               </a-form-item>
               <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-                <a-button class="me-0 me-sm-2 mb-3 mb-sm-0">
-                  <router-link :to="{ name: 'admin-users' }">
+                <a-button @click="goBack" class="me-0 me-sm-2 mb-3 mb-sm-0">
                     <span>Quay lại</span>
-                  </router-link>
                 </a-button>
                 <a-button class="me-0 me-sm-2 mb-3 mb-sm-0 bg-info text-light" @click="resetForm">Reset</a-button>
                 <a-button type="primary" html-type="submit" class="bg-success">Lưu</a-button>
@@ -75,6 +73,7 @@ export default defineComponent({
   setup() {
     useMenu().onSelectedKeys(["admin-users"]);
     const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
+    const apiPrefix = import.meta.env.VITE_API_PREFIX;
     const router = useRouter();
     const users = reactive({
       optionsLevelManage: [],
@@ -84,6 +83,8 @@ export default defineComponent({
     const errors = ref({});
     const formRef = ref();
     const route = useRoute();
+    const token = JSON.parse(localStorage.getItem("token")); // Lấy token từ localStorage
+
     const id = route.params.id
     const formState = reactive({
       userName: '',
@@ -142,7 +143,17 @@ export default defineComponent({
     const resetForm = () => {
       formRef.value.resetFields();
     };
-    //
+    
+    const goBack = () => {
+      // Navigate back to the previous page
+      if (history.length > 1) {
+        // If there's history available, go back
+        history.go(-1);
+      } else {
+        // Otherwise, fallback to home or another default route
+        this.$router.push("/");
+      }
+    };
     const getOptionsLevelManage = () => {
       ApiViewData.GetOptionsLevelManage().then((response) => {
         users.optionsLevelManage = response.data;
@@ -192,9 +203,11 @@ export default defineComponent({
       formData.append('producttypename', formState.producttypename);
       formData.append('price', formState.price);
 
-      axios.post(`https://charismatic-friendship-production.up.railway.app/api/v1/management/${id}/product/insert`, formData, {
+      axios.post( `${apiPrefix}/api/v1/management/${id}/product/insert`, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+
         }
       })
         .then((response) => {
@@ -248,7 +261,8 @@ export default defineComponent({
       createUsers,
       // preview
       handleChangeUpload,
-      handleRemoveAvatar
+      handleRemoveAvatar,
+      goBack
     };
   },
 });

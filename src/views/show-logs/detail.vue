@@ -34,11 +34,9 @@
                     </div>
                 </div>
                 <div class="text-end">
-                    <a-button class="me-0 me-sm-2 mb-3 mb-sm-0">
-                        <router-link :to="{ name: 'admin-logs' }">
-                            <span>Quay lại</span>
-                        </router-link>
-                    </a-button>
+                    <a-button @click="goBack" class="me-0 me-sm-2 mb-3 mb-sm-0">
+                    <span>Quay lại</span>
+                </a-button>
                 </div>
             </div>
         </div>
@@ -56,6 +54,7 @@ export default defineComponent({
     setup() {
         useMenu().onSelectedKeys(["admin-logs"]);
         const route = useRoute();
+        const apiPrefix = import.meta.env.VITE_API_PREFIX;
         const viewData = reactive({
             optionsLogType: [],
         });
@@ -66,6 +65,16 @@ export default defineComponent({
             author: '',
             createdDate: ''
         });
+        const goBack = () => {
+      // Navigate back to the previous page
+      if (history.length > 1) {
+        // If there's history available, go back
+        history.go(-1);
+      } else {
+        // Otherwise, fallback to home or another default route
+        this.$router.push("/");
+      }
+    };
         //
         const getOptionsLogType = () => {
             ApiViewData.GetOptionsLogType().then((response) => {
@@ -100,6 +109,7 @@ export default defineComponent({
             getOptionsLogType,
             filterOptionLogType,
             getLogsDetail,
+            goBack
         };
     },
 });

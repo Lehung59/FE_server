@@ -53,7 +53,7 @@
               <router-link
                 :to="{
                   name: 'admin-chi-tiet-san-pham',
-                  params: { id: record.importDetailId },
+                  params: { id: record.productId },
                 }"
               >
                 <a-button
@@ -114,7 +114,7 @@ export default defineComponent({
   setup() {
     useMenu().onSelectedKeys(["admin-users"]);
     const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
-
+    const apiPrefix = import.meta.env.VITE_API_PREFIX;
     const router = useRouter();
     const route = useRoute();
     const errors = ref([]);
@@ -168,11 +168,16 @@ export default defineComponent({
         fixed: "right",
       },
     ];
+    const token = JSON.parse(localStorage.getItem("token"));
 
     const getUsers = (args) => {
       axios
         .get(
-          `https://charismatic-friendship-production.up.railway.app/api/v1/management/${storeId2._value}/import/view`
+           `${apiPrefix}/api/v1/management/${storeId2._value}/import/view`,{
+            headers: {
+              Authorization: `Bearer ${token}`, // Thêm token vào headers
+            },
+          }
         )
         .then((response) => {
           console.log(response.data.data, "response");

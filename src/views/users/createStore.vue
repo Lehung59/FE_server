@@ -24,10 +24,8 @@
                 <small v-if="errors && errors.UserName" class="text-danger">{{ errors.UserName[0] }}</small>
               </a-form-item>
               <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-                <a-button class="me-0 me-sm-2 mb-3 mb-sm-0">
-                  <router-link :to="{ name: 'admin-users' }">
+                <a-button @click="goBack" class="me-0 me-sm-2 mb-3 mb-sm-0">
                     <span>Quay lại</span>
-                  </router-link>
                 </a-button>
                 <a-button class="me-0 me-sm-2 mb-3 mb-sm-0 bg-info text-light" @click="resetForm">Reset</a-button>
                 <a-button type="primary" html-type="submit" class="bg-success">Lưu</a-button>
@@ -58,6 +56,7 @@ export default defineComponent({
   setup() {
     useMenu().onSelectedKeys(["admin-users"]);
     const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
+    const apiPrefix = import.meta.env.VITE_API_PREFIX;
     const router = useRouter();
     const users = reactive({
       optionsLevelManage: [],
@@ -134,6 +133,16 @@ export default defineComponent({
     const filterOptionRole = (input, option) => {
       return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
     };
+    const goBack = () => {
+      // Navigate back to the previous page
+      if (history.length > 1) {
+        // If there's history available, go back
+        history.go(-1);
+      } else {
+        // Otherwise, fallback to home or another default route
+        this.$router.push("/");
+      }
+    };
     const getOptionsStatus = () => {
       ApiViewData.GetOptionsStatus().then((response) => {
         users.optionsStatus = response.data;
@@ -152,7 +161,7 @@ export default defineComponent({
       formData.append('name', formState.userName);
       console.log('formState');
       console.log(formState, 'formState');
-      axios.post('https://charismatic-friendship-production.up.railway.app/api/v1/admin/storetype/insert', formData, {
+      axios.post(`${apiPrefix}/api/v1/admin/storetype/insert`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -193,6 +202,7 @@ export default defineComponent({
       rules,
       layout,
       resetForm,
+      goBack,
       //
       getOptionsLevelManage,
       getOptionsStatus,

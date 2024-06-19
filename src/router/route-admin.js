@@ -1,7 +1,7 @@
 const adminRoutes = [
   {
     path: "/",
-    redirect: { path: "/dashboards" }, // redirect property
+    redirect: { path: "/trang-chu-stores" }, // redirect property
     component: () => import("../layouts/_share.vue"),
     children: [
       {
@@ -34,6 +34,24 @@ const adminRoutes = [
         name: "admin-measurementresultdatas",
         meta: { title: "Kết quả đo" },
         component: () => import("../views/measurementresultdatas/index.vue"),
+      },
+      {
+        path: "danh-sach-don",
+        name: "danh-sach-don",
+        meta: { title: "Dánh sách đơn" },
+        component: () => import("../views/users/dsDorder.vue"),
+      },
+      {
+        path: "danh-sach-don-da-nhan",
+        name: "danh-sach-don-da-nhan",
+        meta: { title: "Dánh sách đơn đã nhận" },
+        component: () => import("../views/users/dsAccept.vue"),
+      },
+      {
+        path: "danh-sach-don-da-giao",
+        name: "danh-sach-don-da-giao",
+        meta: { title: "Dánh sách đơn đã giao" },
+        component: () => import("../views/users/dsOrdero.vue"),
       },
       {
         path: "ket-qua-do/them-moi/:id",
@@ -120,6 +138,7 @@ const adminRoutes = [
         meta: { title: "Thông tin cá nhân" },
         component: () => import("../views/users/profileUser.vue"),
       },
+
       // importExport
       {
         path: "danh-sach-order-store/:id",
@@ -128,7 +147,7 @@ const adminRoutes = [
         component: () => import("../views/users/detailsOrderbyStore.vue"),
       },
       {
-        path: "order-by-user/:id",
+        path: "order-by-user/:id/customer/:customerId",
         name: "order-by-user",
         meta: { title: "Danh sách sản phẩm đã mua" },
         component: () => import("../views/users/orderByUser.vue"),
@@ -146,6 +165,13 @@ const adminRoutes = [
         meta: { title: "ProductByStore" },
         component: () => import("../views/users/storeProduct.vue"),
       },
+      {
+        path: "product/edit/:id",
+        name: "admin-product-edit",
+        meta: { title: "sửa - product" },
+        component: () => import("../views/users/editProduct.vue"),
+      },
+
       {
         path: "thanh-vien/them-moi",
         name: "admin-users-create",
@@ -178,12 +204,6 @@ const adminRoutes = [
         component: () => import("../views/users/createProduct.vue"),
       },
 
-      {
-        path: "product/edit/:id",
-        name: "admin-product-edit",
-        meta: { title: "sửa - product" },
-        component: () => import("../views/users/editProduct.vue"),
-      },
 
       {
         path: "danh-sach-store/them-moi",
@@ -251,6 +271,12 @@ const adminRoutes = [
         meta: { title: "Chi tiết - Logs" },
         component: () => import("../views/show-logs/detail.vue"),
       },
+      {
+        path: "product-type/info",
+        name: "product-type/info",
+        meta: { title: "Thêm mới - product-type" },
+        component: () => import("../views/users/createProductTypeCo.vue"),
+      },
     ],
   },
   {
@@ -259,6 +285,21 @@ const adminRoutes = [
     meta: { title: "Đăng nhập" },
     component: () => import("../views/auths/login.vue"),
   },
+
+  {
+    path: "/forgetpassword",
+    name: "forgetpassword",
+    meta: { title: "Quên mật khẩu" },
+    component: () => import("../views/auths/forgetPassword.vue"),
+  },
+  {
+    path: "/checkresetpassword",
+    name: "checkresetpassword",
+    meta: { title: "Mã quên mật khẩu" },
+    component: () => import("../views/auths/checkresetpassword.vue")
+  }
+,
+
   {
     path: "/register",
     name: "register",
@@ -266,10 +307,16 @@ const adminRoutes = [
     component: () => import("../views/auths/register.vue"),
   },
   {
-    path: "/trang-chu",
+    path: "/trang-chu/:id",
     name: "trang-chu",
     meta: { title: "Trang chủ" },
     component: () => import("../views/home/homeLayout.vue"),
+  },
+  {
+    path: "/trang-chu-stores",
+    name: "trang-chu-stores",
+    meta: { title: "Trang chủ cửa hàng" },
+    component: () => import("../views/home/storeAllDs.vue"),
   },
   {
     path: "/trang-chu-chi-tiet-san-pham/:id",
@@ -278,10 +325,34 @@ const adminRoutes = [
     component: () => import("../views/home/DetailsProductHome.vue"),
   },
   {
+    path: "/frivStore",
+    name: "frivStore",
+    meta: { title: "frivStore" },
+    component: () => import("../views/home/frivStore.vue"),
+  },
+  {
+    path: "/ordered",
+    name: "ordered",
+    meta: { title: "ordered" },
+    component: () => import("../views/home/Ordered.vue"),
+  },
+  {
     path: "/trang-chu/gio-hang",
     name: "trang-chu-gio-hang",
     meta: { title: "Giỏ hàng" },
     component: () => import("../views/home/cartView.vue"),
+  },
+  {
+    path: "/profile-client",
+    name: "profile-client",
+    meta: { title: "Thông tin cá nhân" },
+    component: () => import("../views/users/profileUserNew.vue"),
+  },
+  {
+    path: "/change-password",
+    name: "change-password",
+    meta: { title: "Đổi mật khẩu" },
+    component: () => import("../views/auths/changePassword.vue"),
   },
   {
     path: "/404",

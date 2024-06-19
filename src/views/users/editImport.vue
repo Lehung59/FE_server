@@ -9,11 +9,11 @@
             >
           </a-breadcrumb-item>
           <a-breadcrumb-item>
-            <router-link :to="{ name: 'admin-users' }">Product</router-link>
+            <router-link :to="{ name: 'admin-users' }">Hóa đơn</router-link>
           </a-breadcrumb-item>
           <a-breadcrumb-item>sửa</a-breadcrumb-item>
         </a-breadcrumb>
-        <h1>Sửa sản phẩm</h1>
+        <h1>Sửa hóa đơn</h1>
       </div>
       <div class="col-12 col-sm-12 mb-3">
         <a-form
@@ -48,10 +48,8 @@
               </a-form-item>
 
               <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-                <a-button class="me-0 me-sm-2 mb-3 mb-sm-0">
-                  <router-link :to="{ name: 'admin-users' }">
+                <a-button @click="goBack" class="me-0 me-sm-2 mb-3 mb-sm-0">
                     <span>Quay lại</span>
-                  </router-link>
                 </a-button>
                 <a-button
                   class="me-0 me-sm-2 mb-3 mb-sm-0 bg-info text-light"
@@ -82,6 +80,7 @@ export default defineComponent({
     useMenu().onSelectedKeys(["admin-users"]);
     const router = useRouter();
     const route = useRoute();
+    const apiPrefix = import.meta.env.VITE_API_PREFIX;
     const productId = route.params.id;
     const formRef = ref();
     const errors = ref({});
@@ -135,6 +134,17 @@ export default defineComponent({
     const resetForm = () => {
       formRef.value.resetFields();
     };
+    const goBack = () => {
+      // Navigate back to the previous page
+      if (history.length > 1) {
+        // If there's history available, go back
+        history.go(-1);
+      } else {
+        // Otherwise, fallback to home or another default route
+        this.$router.push("/");
+      }
+    };
+
 
     const handleFileUpload = (event) => {
       const file = event.target.files[0];
@@ -144,7 +154,7 @@ export default defineComponent({
     // const fetchProduct = async () => {
     //   try {
     //     const response = await axios.get(
-    //       `https://charismatic-friendship-production.up.railway.app/api/v1/product/info/${productId}`
+    //        `${apiPrefix}/api/v1/product/info/${productId}`
     //     );
     //     console.log(response.data.data, "response");
     //     const data = response.data.data;
@@ -164,7 +174,7 @@ export default defineComponent({
       formData.append("price", formState.value.price);
       axios
         .put(
-          `https://charismatic-friendship-production.up.railway.app/api/v1/management/1/import/edit/${id}`,
+           `${apiPrefix}/api/v1/management/${s_id}/import/edit/${id}`,
           formData,
           {
             headers: {
@@ -193,6 +203,7 @@ export default defineComponent({
       resetForm,
       handleFileUpload,
       createUsers,
+      goBack
     };
   },
 });

@@ -127,6 +127,7 @@ export default defineComponent({
     setup() {
         useMenu().onSelectedKeys(["admin-measurementresultdatas"]);
         const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
+        const apiPrefix = import.meta.env.VITE_API_PREFIX;
         const router = useRouter();
         const route = useRoute();
         const errors = ref([]);

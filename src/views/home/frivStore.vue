@@ -268,54 +268,37 @@
       <!--CSS-->
 
       <div class="orderbox">
-        <div class="dieuhuong">
-          <a>Giỏ hàng của bạn</a>
-        </div>
-
+        <h1 style="padding: 30px">Danh sách cửa hàng yêu thích</h1>
         <div class="giohang orderhome">
-          <form method="post" name="giohang" id="cart">
+          <form name="giohang" id="cart">
             <ul class="listcart">
-              <li v-for="product in product" :key="product.id" class="cartitem">
+              <li
+                v-for="product in myFarve"
+                :key="product.orderDetailId"
+                class="cartitem"
+              >
                 <div class="oimg">
-                  <a :href="product.href" :title="product.title">
-                    <img :src="product.productImg" :alt="product.title" />
+                  <a>
+                    <img :src="product.image" :alt="product.title" />
                   </a>
-                  <a
-                    @click="deleteProduct(product.cartItemId)"
-                    class="odel"
-                    rel="nofollow"
-                    :title="`Xóa ${product.title} khỏi đơn hàng`"
-                    >XÓA</a
-                  >
                 </div>
                 <div class="oname">
-                  <h3>{{ product.productName }}</h3>
+                  <h3>{{ product.storeName }}</h3>
+                  <label>{{ product.orderStatusName }}</label>
+                  <p>{{ product.storeAddress }}</p>
 
-                  <label>{{ product.priceTotal?.toLocaleString() }}₫</label>
-                  <h6>Cửa hàng: {{ product.storeName }}</h6>
-                  <span
-                    class="bynow"
-                    @click="byProductCart(product.cartItemId)"
-                    style="float: right; padding-top: 10px; cursor: 'pointer'"
-                    >Mua ngay</span
-                  >
-
-                  <div class="ArrCount">
-                    <span @click="decrement(product)" class="sub">-</span>
-                    <input type="text" :value="product.quantity" readonly />
-                    <span @click="increment(product)" class="cre">+</span>
-                    <!-- increment -->
+                  <div style="float: right">
+                    <button
+                      type="button"
+                      @click="cancelOderMyFarvor(product.storeId)"
+                      class="btn"
+                    >
+                      Hủy thích
+                    </button>
                   </div>
                 </div>
               </li>
             </ul>
-            <div class="total flexJus">
-              <div>
-                <span>Tổng tiền:&nbsp;&nbsp;</span>
-                <b class="total_money">{{ allTotal.toLocaleString() }}₫</b>
-              </div>
-            </div>
-
             <input
               type="submit"
               name="_w_action[UpdatePOST]"
@@ -323,109 +306,6 @@
             />
             <input type="hidden" name="_w_action" value="UpdatePOST" />
           </form>
-
-          <!--.box_27-->
-          <!-- <form method="post" name="order" id="fod">
-            <div class="fpanel">
-              <div class="option">
-                <input name="Sex" type="radio" value="1" />Anh
-              </div>
-              <div class="option">
-                <input name="Sex" checked="" type="radio" value="0" />Chị
-              </div>
-              <div class="group">
-                <input
-                  type="text"
-                  name="Name"
-                  value=""
-                  placeholder="Họ và tên"
-                />
-                <input
-                  name="Phone"
-                  type="text"
-                  value=""
-                  placeholder="Số điện thoại"
-                />
-                <input
-                  name="Note"
-                  type="text"
-                  placeholder="Yêu cầu khác (không bắt buộc)"
-                  value=""
-                />
-              </div>
-            </div>
-
-            <div class="fpanel">
-              <label><b>Để được phục vụ nhanh hơn,</b> hãy chọn thêm:</label>
-              <div class="option opanel" data-rel="dcgh">
-                <input name="Panel" checked="" type="radio" />Địa chỉ giao hàng
-              </div>
-              <div class="option opanel" data-rel="ntst">
-                <input name="Panel" type="radio" />Nhận tại cửa hàng
-              </div>
-              <div id="dcgh" class="paytype" style="display: block">
-                <input
-                  type="text"
-                  name="Address"
-                  value=""
-                  placeholder="Số nhà, tên đường, phường/xã/huyện/tỉnh"
-                />
-
-                <div class="daily">
-                  <input type="checkbox" name="PayType" />Cà thẻ tại nhà
-                </div>
-                <div class="daily">
-                  <input type="checkbox" name="PayType" />Xuất hóa đơn công ty
-                </div>
-              </div>
-              <div id="ntst" class="paytype">
-                <div class="daily">
-                  <input name="Agent" type="radio" value="1" />21C Trần Duy
-                  Hưng, Cầu Giấy, HN
-                </div>
-                <div class="daily">
-                  <input name="Agent" type="radio" value="2" />107 Thảo Nguyên,
-                  Ecopark, HN
-                </div>
-                <div class="daily">
-                  <input name="Agent" type="radio" value="3" />148 Nguyễn Hoàng,
-                  P. AN Phú, Quận 2, HCM
-                </div>
-                <div class="daily">
-                  <input name="Agent" type="radio" value="4" />245 Đường 30/4,
-                  Dương Đông, Phú Quốc
-                </div>
-              </div>
-            </div>
-            <div class="fpanel">
-              <div class="da">
-                <p class="state">Đơn hàng đang được gửi ...</p>
-                <p class="od" id="gui" onclick="guidonhang();">
-                  ĐẶT HÀNG <span>(Xem hàng, không mua không sao)</span>
-                </p>
-              </div>
-              <input
-                type="submit"
-                name="_w_action[OrderPOST]"
-                style="display: none"
-              />
-              <input type="hidden" name="_w_action" value="OrderPOST" />
-            </div>
-          </form> -->
-          <!-- <div class="fpanel">
-            <div class="da">
-              <p @click="showDrawer" class="od" id="gui">Xem các đơn đã đặt</p>
-            </div>
-            <p @click="showDrawer2" class="od" id="gui">
-              Xem cửa hàng yêu thích
-            </p>
-            <input
-              type="submit"
-              name="_w_action[OrderPOST]"
-              style="display: none"
-            />
-            <input type="hidden" name="_w_action" value="OrderPOST" />
-          </div> -->
         </div>
       </div>
     </div>

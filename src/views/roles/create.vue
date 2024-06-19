@@ -68,6 +68,7 @@ export default defineComponent({
     setup() {
         useMenu().onSelectedKeys(["admin-roles"]);
         const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
+        const apiPrefix = import.meta.env.VITE_API_PREFIX;
         const router = useRouter();
         const users = reactive({
             optionsStatus: [],

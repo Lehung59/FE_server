@@ -14,69 +14,11 @@
           <p><strong>Mạng xã hội:</strong> {{ userData.socialContact || 'N/A' }}</p>
         </div>
       </div>
-      <div class="d-flex">
-        <div class="card-footer">
+      <div class="card-footer">
         <button @click="showModal" class="edit-button">Chỉnh sửa</button>
       </div>
-      <div class="card-footer">
-        <button @click="showModal2" class="edit-button">Đổi mật khẩu</button>
-      </div>
-      </div>
-
-
     </div>
     <div v-else class="loading">Loading...</div>
-
-    <a-modal v-model:visible="isModalVisible2" title="Đổi mật khẩu" @ok="handleChangePass" @cancel="handleCancel">
-    <a-form :form="form2" layout="vertical">
-      <a-form-item
-        label="Mật khẩu cũ"
-        :validateStatus="getOldPassStatus"
-        :help="oldPassHelpMessage"
-      >
-        <a-input
-          :type="isOldPassVisible ? 'text' : 'password'"
-          v-model:value="formDataChangePass.oldPass"
-          @input="handleInputChange2('oldPass', $event)"
-        />
-        <a-icon
-          :type="isOldPassVisible ? 'eye-invisible' : 'eye'"
-          @click="togglePasswordVisibility('oldPass')"
-        />
-      </a-form-item>
-      <a-form-item
-        label="Mật khẩu mới"
-        :validateStatus="getNewPassStatus"
-        :help="newPassHelpMessage"
-      >
-        <a-input
-          :type="isNewPassVisible ? 'text' : 'password'"
-          v-model:value="formDataChangePass.newPass"
-          @input="handleInputChange2('newPass', $event)"
-        />
-        <a-icon
-          :type="isNewPassVisible ? 'eye-invisible' : 'eye'"
-          @click="togglePasswordVisibility('newPass')"
-        />
-      </a-form-item>
-      <a-form-item
-        label="Xác nhận mật khẩu mới"
-        :validateStatus="getConfirmNewPassStatus"
-        :help="confirmNewPassHelpMessage"
-      >
-        <a-input
-          :type="isConfirmNewPassVisible ? 'text' : 'password'"
-          v-model:value="formDataChangePass.confirmNewPass"
-          @input="handleInputChange2('confirmNewPass', $event)"
-        />
-        <a-icon
-          :type="isConfirmNewPassVisible ? 'eye-invisible' : 'eye'"
-          @click="togglePasswordVisibility('confirmNewPass')"
-        />
-      </a-form-item>
-    </a-form>
-  </a-modal>
-
 
     <a-modal v-model:visible="isModalVisible" title="Chỉnh sửa thông tin" @ok="handleOk" @cancel="handleCancel">
       <a-form :form="form" layout="vertical">
@@ -119,7 +61,7 @@
 </template>
 
 <script>
-import { ref, onMounted,computed  } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { message } from 'ant-design-vue';
 
@@ -128,21 +70,13 @@ export default {
     const userData = ref(null);
     const apiPrefix = import.meta.env.VITE_API_PREFIX;
     const isModalVisible = ref(false);
-    const isModalVisible2 = ref(false);
-
     const form = ref(null);
-    const form2 = ref(null);
     const formData = ref({
       firstname: '',
       lastname: '',
       phoneNumber: '',
       address: '',
       avatar: ''
-    });
-    const formDataChangePass = ref({
-      oldPass: '',
-      newPass: '',
-      confirmNewPass: '',
     });
 
     const avatarFile = ref(null); // Store the file object
@@ -154,93 +88,12 @@ export default {
     const selectedDistrict = ref('0');
     const selectedWard = ref('0');
     const houseNumber = ref('');
-    const isOldPassVisible = ref(false);
-    const isNewPassVisible = ref(false);
-    const isConfirmNewPassVisible = ref(false);
+
 
     const handleInputChange = (fieldName, event) => {
       formData.value[fieldName] = event.target.value;
     };
 
-    const handleInputChange2 =(fieldName, event) => {
-      formDataChangePass.value[fieldName] = event.target.value;
-    };
-
-
-    const togglePasswordVisibility = (field) => {
-      if (field === 'oldPass') {
-        isOldPassVisible.value = !isOldPassVisible.value;
-      } else if (field === 'newPass') {
-        isNewPassVisible.value = !isNewPassVisible.value;
-      } else if (field === 'confirmNewPass') {
-        isConfirmNewPassVisible.value = !isConfirmNewPassVisible.value;
-      }
-    };
-
-
-    const validateForm = () => {
-      if (formDataChangePass.value.newPass.length < 8) {
-        message.error('Mật khẩu mới phải có tối thiểu 8 ký tự');
-        return false;
-      }
-      if (formDataChangePass.value.newPass === formDataChangePass.value.oldPass) {
-        message.error('Mật khẩu mới phải khác mật khẩu cũ');
-        return false;
-      }
-      if (formDataChangePass.value.newPass !== formDataChangePass.value.confirmNewPass) {
-        message.error('Xác nhận mật khẩu mới không khớp');
-        return false;
-      }
-      return true;
-    };
-
-    const getOldPassStatus = computed(() => {
-      return formDataChangePass.value.oldPass.length >= 8 ? 'success' : 'error';
-    });
-
-    const oldPassHelpMessage = computed(() => {
-      return formDataChangePass.value.oldPass.length >= 8 ? '' : 'Mật khẩu phải có tối thiểu 8 ký tự';
-    });
-
-    const getNewPassStatus = computed(() => {
-      if (formDataChangePass.value.newPass.length < 8) {
-        return 'error';
-      }
-      if (formDataChangePass.value.newPass === formDataChangePass.value.oldPass) {
-        return 'error';
-      }
-      return 'success';
-    });
-
-    const newPassHelpMessage = computed(() => {
-      if (formDataChangePass.value.newPass.length < 8) {
-        return 'Mật khẩu phải có tối thiểu 8 ký tự';
-      }
-      if (formDataChangePass.value.newPass === formDataChangePass.value.oldPass) {
-        return 'Mật khẩu mới phải khác mật khẩu cũ';
-      }
-      return '';
-    });
-
-    const getConfirmNewPassStatus = computed(() => {
-      if (formDataChangePass.value.confirmNewPass.length < 8) {
-        return 'error';
-      }
-      if (formDataChangePass.value.newPass !== formDataChangePass.value.confirmNewPass) {
-        return 'error';
-      }
-      return 'success';
-    });
-
-    const confirmNewPassHelpMessage = computed(() => {
-      if (formDataChangePass.value.confirmNewPass.length < 8) {
-        return 'Mật khẩu phải có tối thiểu 8 ký tự';
-      }
-      if (formDataChangePass.value.newPass !== formDataChangePass.value.confirmNewPass) {
-        return 'Xác nhận mật khẩu mới không khớp';
-      }
-      return '';
-    });
 
     const fetchProvinces = async () => {
       try {
@@ -335,42 +188,6 @@ export default {
     const showModal = () => {
       isModalVisible.value = true;
     };
-    const showModal2 = () => {
-      isModalVisible2.value = true;
-    };
-    const handleChangePass =  async () => {
-      try {
-        
-        const token = JSON.parse(localStorage.getItem('token'));
-        const newValue = {
-          oldPassword: formDataChangePass.value.oldPass,
-          newPassword: formDataChangePass.value.newPass,
-      };
-
-        await axios.post(`${apiPrefix}/api/v1/auth/changepassword`, newValue, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        message.success('Đổi mật khẩu thành công');
-        isModalVisible2.value = false;
-        formDataChangePass.value.oldPass = '';
-        formDataChangePass.value.newPass = '';
-
-        formDataChangePass.value.confirmNewPass = '';
-
-
-      }catch (error) {
-        if (error.response && error.response.data) {
-          message.error(error.response.data);
-        } else {
-          message.error('Đã xảy ra lỗi');
-        }
-      }
-    };
-
-
-
     const handleOk = async () => {
       try {
         const token = JSON.parse(localStorage.getItem('token'));
@@ -399,7 +216,6 @@ export default {
 
     const handleCancel = () => {
       isModalVisible.value = false;
-      isModalVisible2.value = false;
     };
 
     onMounted(() => {
@@ -411,28 +227,12 @@ export default {
     return {
       userData,
       isModalVisible,
-      isModalVisible2,
       form,
-      form2,
       formData,
-      formDataChangePass,
-      isOldPassVisible,
-      isNewPassVisible,
-      isConfirmNewPassVisible,
       showModal,
-      showModal2,
       handleOk,
-      handleChangePass,
       handleCancel,
       handleInputChange,
-      handleInputChange2,
-      togglePasswordVisibility,
-      getOldPassStatus,
-      oldPassHelpMessage,
-      getNewPassStatus,
-      newPassHelpMessage,
-      getConfirmNewPassStatus,
-      confirmNewPassHelpMessage,
       provinces,
       districts,
       wards,

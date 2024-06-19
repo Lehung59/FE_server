@@ -3,58 +3,13 @@
     <div class="row mb-3">
       <div class="col-6">
         <a-breadcrumb>
-          <a-breadcrumb-item>Cửa hàng</a-breadcrumb-item>
+          <a-breadcrumb-item>Danh sách đơn </a-breadcrumb-item>
         </a-breadcrumb>
       </div>
-      <div class="col-6 d-flex justify-content-end">
-        <a-button class="me-2">
-          <i class="fa-solid fa-vials"></i>
-        </a-button>
-        <a-button class="me-2">
-          <i class="fa-solid fa-vial-virus"></i>
-        </a-button>
-        <a-button type="primary" title="Thêm mới">
-          <router-link :to="{ name: 'admin-store-create' }">
-            <i class="fa-solid fa-plus"></i>
-          </router-link>
-        </a-button>
-      </div>
     </div>
-    <!-- <div class="row">
-            <div class="col-12">
-                <a-form @keyup.enter="clickFrmFilter($event)" layout="inline" class="p-3 border">
-                    <div class="col-3">
-                        <label for="exampleFormControlInput1" class="form-label">Tài khoản</label>
-                        <a-form-item>
-                            <a-input v-model:value="pageParam.userName" placeholder="Username"
-                                class="form-control form-control-sm" size="small"></a-input>
-                        </a-form-item>
-                    </div>
-                    <div class="col-3">
-                        <label for="exampleFormControlInput1" class="form-label">.</label>
-                        <a-form-item>
-                           <a-button v-on:click="clickFrmFilter($event)" class="bg-success text-light btn btn-sm"
-                                size="small" type="button" html-type="button">
-                                Tìm kiếm
-                            </a-button>
-                            <a-button v-on:click="clickFrmFilter($event)" class="bg-success text-light btn btn-sm"
-                                size="small" type="submit" html-type="button">
-                                Tìm kiếm
-                            </a-button>
-                        </a-form-item>
-                    </div>
-                </a-form>
-
-            </div>
-        </div> -->
     <div class="row">
       <div class="col-12">
-        <a-table
-          :dataSource="users"
-          :columns="columns"
-          :scroll="{ x: 576 }"
-          :pagination="false"
-        >
+        <a-table :dataSource="users" :columns="columns" :scroll="{ x: 576 }" :pagination="false">
           <template #bodyCell="{ column, index, record }">
             <template v-if="column.key === 'index'">
               <span>{{ index + 1 }}</span>
@@ -63,150 +18,69 @@
               <span>{{ record.storeName }}</span>
             </template>
             <template v-if="column.key === 'fullName'">
-              <span>{{ record.phoneNumber }}</span>
+              <span>{{ record.productName }}</span>
             </template>
             <template v-if="column.key === 'email'">
-              <span>{{ record.storeType }}</span>
+              <span>{{ record.quantity }}</span>
             </template>
-
+            <template v-if="column.key === 'email2'">
+              <span>{{ record.productName }}</span>
+            </template>
+            <template v-if="column.key === 'email3'">
+              <img :style="{ width: '50px !important' }" :src="record.productImg" :alt="record.productImg" />
+            </template>
+            <template v-if="column.key === 'email4'">
+              <span>{{ record.priceTotal?.toLocaleString() }} VND</span>
+            </template>
             <template v-if="column.key === 'action' && authStoreClaim !== null">
-              <a-popconfirm
-                title="Bạn muốn Khóa bản ghi này?"
-                ok-text="Yes"
-                cancel-text="No"
-              >
-                <router-link
-                  :to="{
-                    name: 'ProductByStore',
-                    params: { id: record.storeId },
-                  }"
-                >
-                  <a-button
-                    title="Khóa"
-                    type="dashed"
-                    size="small"
-                    shape=""
-                    class="me-2 text-warning"
-                  >
-                    sản phẩm
-                  </a-button>
-                </router-link>
-              </a-popconfirm>
-              <a-popconfirm
-                title="Bạn muốn Khóa bản ghi này?"
-                ok-text="Yes"
-                cancel-text="No"
-              >
-                <router-link
-                  :to="{
-                    name: 'admin-store-all-staff',
-                    params: { id: record.storeId },
-                  }"
-                >
-                  <a-button
-                    title="Khóa"
-                    type="dashed"
-                    size="small"
-                    shape=""
-                    class="me-2 text-warning"
-                  >
-                    Khách hàng
-                  </a-button>
-                </router-link>
-              </a-popconfirm>
+            </template>
+            <template v-if="column.key === 'action' && authStoreClaim !== null">
 
-              <a-popconfirm
-                title="Bạn muốn Khóa bản ghi này?"
-                ok-text="Yes"
-                cancel-text="No"
+              <a-button @click="getIdDh(record.orderDetailId)" type="dashed" size="small" title="Sửa">
+                Chi tiết
+              </a-button>
+              <a-button @click="giveOrder(record.orderDetailId)" type="dashed" size="small" title="Sửa">
+                Nhận đơn
+              </a-button>
+              <!-- <a-button
+                title="Khóa"
+                @click="doneOrder(record.orderDetailId)"
+                type="dashed"
+                size="small"
+                shape=""
+               
               >
-                <router-link
-                  :to="{
-                    name: 'danh-sach-order-store',
-                    params: { id: record.storeId },
-                  }"
-                >
-                  <a-button
-                    title="Khóa"
-                    type="dashed"
-                    size="small"
-                    shape=""
-                    class="me-2 text-warning"
-                  >
-                    đơn hàng
-                  </a-button>
-                </router-link>
-              </a-popconfirm>
-
-              <a-popconfirm
-                title="Bạn muốn Khóa bản ghi này?"
-                ok-text="Yes"
-                cancel-text="No"
-              >
-                <router-link
-                  :to="{
-                    name: 'doanh-thu-store',
-                    params: { id: record.storeId },
-                  }"
-                >
-                  <a-button
-                    title="Khóa"
-                    type="dashed"
-                    size="small"
-                    shape=""
-                    class="me-2 text-warning"
-                  >
-                    doanh thu
-                  </a-button>
-                </router-link>
-              </a-popconfirm>
-
-              <a-popconfirm
-                title="Bạn muốn Khóa bản ghi này?"
-                ok-text="Yes"
-                cancel-text="No"
-              >
-                <router-link
-                  :to="{
-                    name: 'importExport',
-                    params: { id: record.storeId },
-                  }"
-                >
-                  <a-button
-                    title="Khóa"
-                    type="dashed"
-                    size="small"
-                    shape=""
-                    class="me-2 text-warning"
-                  >
-                    Hóa đơn nhập hàng
-                  </a-button>
-                </router-link>
-              </a-popconfirm>
+                Hoàn thành
+              </a-button> -->
             </template>
           </template>
         </a-table>
         <div class="col-12">
-          <a-pagination
-            @change="onChange"
-            v-model:current="pageParam.current"
-            :total="pageParam.totalRecord"
-            :pageSize="pageParam.pageSize"
-            :show-total="
-              (total, range) => `${range[0]}-${range[1]} of ${total} items`
-            "
-            class="mt-2 text-end"
-          />
+          <a-pagination @change="onChange" v-model:current="pageParam.current" :total="pageParam.totalRecord"
+            :pageSize="pageParam.pageSize" :show-total="(total, range) => `${range[0]}-${range[1]} of ${total} items`
+          " class="mt-2 text-end" />
         </div>
       </div>
     </div>
   </a-card>
+  <a-drawer title="Chi tiết" :visible="isDrawerVisible" :width="850" @close="handleClose" :destroyOnClose="true">
+    <div class="giohang orderhome">
+      <p style="color: black;">Tên khách hàng : {{ dataId.customerName }}</p>
+      <p>Số điện thoại : {{ dataId.customerPhone }}</p>
+      <p>Tổng tiền :{{ dataId.priceTotal }}</p>
+      <p>Tên sản phẩm :{{ dataId.productName }}</p>
+      <p>Số lượng :{{ dataId.quantity }}</p>
+      <p>Địa chỉ :{{ dataId.address }}</p>
+
+
+    </div>
+  </a-drawer>
 </template>
 <script>
 import { defineComponent, ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useRoute } from "vue-router";
-import { message } from "ant-design-vue";
+import { Form, Drawer, Button, InputNumber, message } from "ant-design-vue";
 import { useMenu } from "../../stores/use-menu.js";
 import { onUpdated, onMounted } from "vue";
 import ApiViewData from "../../api/ApiViewData.js";
@@ -214,6 +88,13 @@ import ApiUser from "../../api/ApiUser.js";
 import { useAuthStore } from "../../stores/auth.store.js";
 import axios from "axios";
 export default defineComponent({
+  components: {
+    "a-form": Form,
+    "a-form-item": Form.Item,
+    "a-drawer": Drawer,
+    "a-button": Button,
+    "a-input-number": InputNumber,
+  },
   setup() {
     useMenu().onSelectedKeys(["admin-users"]);
     const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
@@ -222,6 +103,10 @@ export default defineComponent({
     const route = useRoute();
     const errors = ref([]);
     const users = ref([]);
+    const dataId = ref({});
+    const token = JSON.parse(localStorage.getItem("token")); // Lấy token từ localStorage
+
+    const isDrawerVisible = ref(false);
     const pageParam = reactive({
       current: Object.keys(route.query).length > 0 ? route.query.PageNumber : 1,
       pageNumber:
@@ -231,6 +116,28 @@ export default defineComponent({
       userName: Object.keys(route.query).length > 0 ? route.query.UserName : "",
       statusFilter: false,
     });
+
+    const showDrawer = () => {
+      isDrawerVisible.value = true;
+    };
+    const handleClose = () => {
+      isDrawerVisible.value = false;
+    };
+    const getIdDh = async (idI) => {
+      showDrawer()
+      const { data } = await axios.get(`${apiPrefix}/api/v1/shipper/orderdetail?orderid=${idI}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      if (data.status === "OK") {
+        dataId.value = data.data
+        console.log(dataId.data, 'dataId.data')
+      } else {
+        console.error(data.message);
+      }
+
+    }
     const columns = [
       {
         title: "#",
@@ -242,29 +149,40 @@ export default defineComponent({
         key: "userName",
       },
       {
-        title: "Sđt",
+        title: "Tên sản phẩm",
         dataIndex: "fullName",
         key: "fullName",
       },
       {
-        title: "Loại",
+        title: "Số lượng",
         key: "email",
       },
-
+      {
+        title: "Tên sản phẩm",
+        key: "email2",
+      },
+      {
+        title: "Ảnh",
+        key: "email3",
+      },
+      {
+        title: "Tổng tiền",
+        key: "email4",
+      },
       {
         title: "Tác vụ",
         key: "action",
         fixed: "right",
       },
     ];
-    const token = JSON.parse(localStorage.getItem("token"));
+
     const getUsers = (args) => {
       axios
         .get(
-          `${apiPrefix}/api/v1/admin/store/view`,
+          `${apiPrefix}/api/v1/shipper/orderlist/view`,
           {
             headers: {
-              Authorization: `Bearer ${token}`, // Thêm token vào headers
+              Authorization: `Bearer ${token}`,
             },
           }
         )
@@ -338,6 +256,41 @@ export default defineComponent({
           }
         });
     };
+    const giveOrder = async (orderId) => {
+      try {
+
+        const data = await axios.get(
+          `${apiPrefix}/api/v1/shipper/changestatus1/${orderId}`
+          ,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(data)
+        window.location.href = "/danh-sach-don-da-nhan";
+        message.success("success");
+      } catch (e) {
+        message.error(e.response.data);
+      }
+    };
+    const doneOrder = async (orderId) => {
+      try {
+        const data = await axios.get(
+          `${apiPrefix}/api/v1/shipper/changestatus2/${orderId}`
+          ,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        message.success("success");
+      } catch (e) {
+        message.error(e.response.data.message);
+      }
+    };
     //
     onUpdated(() => {
       //
@@ -384,6 +337,13 @@ export default defineComponent({
       clickFrmFilter,
       confirmRemove,
       confirmBanned,
+      giveOrder,
+      doneOrder,
+      isDrawerVisible,
+      showDrawer,
+      handleClose,
+      dataId,
+      getIdDh
     };
     //
   },

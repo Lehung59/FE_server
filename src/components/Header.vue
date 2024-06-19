@@ -37,8 +37,7 @@
   </div> -->
 
   <div class="MuiBox-root jss272 jss261" id="header">
-    <h3 style="color: white" class="MuiTypography-root MuiTypography-h3">
-      Tổng quan
+    <h3  style="color: white" class="MuiTypography-root MuiTypography-h3">
     </h3>
     <div class="MuiBox-root jss273 jss262">
       <div class="MuiBox-root jss305 jss263 jss267">
@@ -55,7 +54,7 @@
         >
           <div
             class="sb-avatar__text"
-            title="thanhdo vu"
+            title=""
             style="
               width: 30px;
               height: 30px;
@@ -81,7 +80,7 @@
                   vertical-align: middle;
                   white-space: nowrap;
                 "
-                ><span>T</span></span
+                ><span>{{ userLocal && userLocal.lastname ? userLocal.lastname.charAt(0) : '' }}</span></span
               >
             </div>
           </div>
@@ -90,20 +89,28 @@
           class="MuiTypography-root jss266 MuiTypography-body1 MuiTypography-colorTextPrimary"
         >
           <a-dropdown>
-            <a class="ant-dropdown-link text-light" @click.prevent>
+            <a class="ant-dropdown-link " @click.prevent>
               <span class="me-1">Xin chào {{ userLocal?.lastname }}</span>
-              <i class="fa-solid fa-caret-down"></i>
+              <i class="fa-solid "></i>
             </a>
             <template #overlay>
               <a-menu>
-                <a-menu-item>
-                  <a @click="handleClickLogout">Đăng xuất</a>
-                </a-menu-item>
+
                 <a-menu-item>
                   <router-link :to="{ name: 'profile-user' }">
-                    <a>Profile</a>
+                    <a>Trang cá nhân</a>
                   </router-link>
                 </a-menu-item>
+
+                <a-menu-item>
+                  <router-link :to="{ name: 'change-password' }">
+                    <a>Đổi mật khẩu</a>
+                  </router-link>
+                </a-menu-item>
+                <a-menu-item>
+                  <a @click="handleClickLogout"  style="color: red;">Đăng xuất</a>
+                </a-menu-item>
+
               </a-menu>
             </template>
           </a-dropdown>
@@ -149,6 +156,7 @@ import { useRoute } from "vue-router";
 
 export default defineComponent({
   setup() {
+    const apiPrefix = import.meta.env.VITE_API_PREFIX;
     const authStore = useAuthStore();
     const route = useRoute();
     const userLocal = JSON.parse(localStorage.getItem("auth"));
@@ -156,7 +164,7 @@ export default defineComponent({
       localStorage.removeItem("auth");
       localStorage.removeItem("access_token");
       localStorage.removeItem("token");
-      route.push({ name: "login" });
+      window.location.href="http://localhost:5173/login"
       // if (authStore.user) {
 
       //   return authStore.logout(authStore.user.userName).catch(error => {
@@ -2569,9 +2577,9 @@ body::backdrop {
   height: 100%;
   overflow: hidden;
 
-  background: url(https://sapo.dktcdn.net/sapo-frontend-v3/master/static/media/6f2d8a7e4d0034640555.png)
+  background: url(https://res.cloudinary.com/dqvr7kat6/image/upload/v1718268402/zu43thyvdywlzfuhxfm6.webp)
       top left no-repeat,
-    url(https://sapo.dktcdn.net/sapo-frontend-v3/master/static/media/f6083db7e88697072ad0.png)
+    url(https://res.cloudinary.com/dqvr7kat6/image/upload/v1718268402/zu43thyvdywlzfuhxfm6.webp)
       bottom right no-repeat !important;
 }
 .jss275 {

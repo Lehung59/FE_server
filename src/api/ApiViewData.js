@@ -45,14 +45,12 @@ class ApiViewData {
   GetOptionsTypeFrequency = () => {
     return API.get(`${END_POINT.GetOptionsTypeFrequency}`);
   };
-  // thanhlv 20.02.2024
   GetOptionsMeasuringTool = () => {
     return API.get(`${END_POINT.GetOptionsMeasuringTool}`);
   };
   GetOptionsMeasuringToolMeasurementItem = (measuringToolId) => {
     return API.get(`${END_POINT.GetOptionsMeasuringToolMeasurementItem}/${measuringToolId}`);
   };
-  // truyen vao la dungcudo_hangmucdo
   GetOptionsMeasuringToolMeasurementItemByDay = (measuringToolId) => {
     return API.get(`${END_POINT.GetOptionsMeasuringToolMeasurementItemByDay}/${measuringToolId}`);
   };

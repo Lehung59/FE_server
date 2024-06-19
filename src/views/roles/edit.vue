@@ -35,11 +35,9 @@
                             </a-form-item>
 
                             <a-form-item :wrapper-col="{ span: 14, offset: 4 }" v-if="authStoreClaim['admin.roles.edit'] === '1'">
-                                <a-button class="me-0 me-sm-2 mb-3 mb-sm-0">
-                                    <router-link :to="{ name: 'admin-roles' }">
-                                        <span>Quay lại</span>
-                                    </router-link>
-                                </a-button>
+                                <a-button @click="goBack" class="me-0 me-sm-2 mb-3 mb-sm-0">
+                    <span>Quay lại</span>
+                </a-button>
                                 <a-button type="primary" html-type="submit" class="bg-success">Lưu</a-button>
                             </a-form-item>
                         </div>
@@ -101,6 +99,7 @@ export default defineComponent({
     setup() {
         useMenu().onSelectedKeys(["admin-roles"]);
         const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
+        const apiPrefix = import.meta.env.VITE_API_PREFIX;
         const router = useRouter();
         const route = useRoute();
         const users = reactive({
@@ -142,6 +141,16 @@ export default defineComponent({
         const filterOptionStatus = (input, option) => {
             return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
         };
+        const goBack = () => {
+      // Navigate back to the previous page
+      if (history.length > 1) {
+        // If there's history available, go back
+        history.go(-1);
+      } else {
+        // Otherwise, fallback to home or another default route
+        this.$router.push("/");
+      }
+    };
         const getUsersEdit = () => {
             ApiRole.GetItemById(route.params.id).then((response) => {
                 formState.id = response.data.id;
@@ -217,6 +226,7 @@ export default defineComponent({
             handleClickClaim,
             users,
             updateUsers,
+            goBack
         };
     },
 });

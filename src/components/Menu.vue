@@ -28,6 +28,7 @@ export default defineComponent({
     HistoryOutlined
   },
   setup() {
+    const apiPrefix = import.meta.env.VITE_API_PREFIX;
     const store = useMenu();
     const router = useRouter();
     const authStore = useAuthStore();

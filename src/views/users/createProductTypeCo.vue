@@ -9,9 +9,7 @@
             >
           </a-breadcrumb-item>
           <a-breadcrumb-item>
-            <router-link :to="{ name: 'admin-users' }"
-              >Product type</router-link
-            >
+            <router-link :to="{ name: 'admin-users' }">Info store</router-link>
           </a-breadcrumb-item>
           <a-breadcrumb-item>Thêm mới</a-breadcrumb-item>
         </a-breadcrumb>
@@ -30,17 +28,33 @@
         >
           <div class="row">
             <div class="col-12 col-sm-9">
-              <a-form-item ref="userName" label="name" required name="userName">
+              <a-form-item
+                ref="userName"
+                label="address"
+                required
+                name="userName"
+              >
                 <a-input v-model:value="formState.userName" />
                 <small v-if="errors && errors.UserName" class="text-danger">{{
                   errors.UserName[0]
                 }}</small>
               </a-form-item>
-              <a-form-item ref="fullName" label="avatar" name="fullName">
-                <input type="file" @change="handleFileUpload" />
+              <a-form-item
+                ref="fullName"
+                label="phonenumber"
+                required
+                name="fullName"
+              >
+                <a-input v-model:value="formState.fullName" />
                 <small v-if="errors && errors.FullName" class="text-danger">{{
                   errors.FullName[0]
                 }}</small>
+              </a-form-item>
+              <a-form-item ref="email" label="name" required name="email">
+                <a-input v-model:value="formState.email" />
+              </a-form-item>
+              <a-form-item ref="urlAvatar" label="avatar" name="urlAvatar">
+                <input type="file" @change="handleFileUpload" />
               </a-form-item>
               <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
                 <a-button @click="goBack" class="me-0 me-sm-2 mb-3 mb-sm-0">
@@ -64,7 +78,7 @@
 </template>
 <script>
 import { onMounted, defineComponent, ref, reactive, toRefs } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { message } from "ant-design-vue";
 import { DeleteOutlined } from "@ant-design/icons-vue";
 import { useMenu } from "../../stores/use-menu.js";
@@ -90,12 +104,21 @@ export default defineComponent({
     });
     const errors = ref({});
     const formRef = ref();
-    const route = useRoute();
-    const id = route.params.id;
     const formState = reactive({
       userName: "",
       fullName: "",
-      avatarFile: "",
+      email: "",
+      passWord: "",
+      rePassWord: "",
+      levelManage: "",
+      roleID: "",
+      status: "",
+      //
+      urlAvatar: "",
+      fileAvatar: null,
+      rmavatar: "yes",
+      //
+      change_password: false,
     });
     const fileAvatar = ref(null);
     let validatePass = async (rule, value) => {
@@ -108,6 +131,20 @@ export default defineComponent({
         return Promise.resolve();
       }
     };
+    const goBack = () => {
+      // Navigate back to the previous page
+      if (history.length > 1) {
+        // If there's history available, go back
+        history.go(-1);
+      } else {
+        // Otherwise, fallback to home or another default route
+        this.$router.push("/");
+      }
+    };
+    const handleFileUpload = (event) => {
+      const file = event.target.files[0];
+      this.formState.avatarFile = file; // Store the file object in formState
+    };
     let validatePass2 = async (rule, value) => {
       if (value === "") {
         return Promise.reject("Please input the password again");
@@ -117,22 +154,7 @@ export default defineComponent({
         return Promise.resolve();
       }
     };
-    const rules = {
-      userName: [
-        {
-          required: true,
-          message: "name không để trống.",
-          trigger: "change",
-        },
-      ],
-      fullName: [
-        {
-          required: false,
-          message: " không để trống.",
-          trigger: "change",
-        },
-      ],
-    };
+    const rules = {};
     const layout = {
       labelCol: {
         span: 4,
@@ -154,16 +176,6 @@ export default defineComponent({
         .catch((error) => {
           console.log(error);
         });
-    };
-    const goBack = () => {
-      // Navigate back to the previous page
-      if (history.length > 1) {
-        // If there's history available, go back
-        history.go(-1);
-      } else {
-        // Otherwise, fallback to home or another default route
-        this.$router.push("/");
-      }
     };
     const filterOptionLevelManage = (input, option) => {
       return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
@@ -195,34 +207,34 @@ export default defineComponent({
       return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
     };
     //
-    const handleFileUpload = (event) => {
-      const file = event.target.files[0];
-      formState.avatarFile = file; // Store the file object in formState
-    };
+    const token = JSON.parse(localStorage.getItem("token")); // Lấy token từ localStorage
+
     const createUsers = () => {
       const formData = new FormData();
-      formData.append("name", formState.userName);
-      formData.append("avatar", formState.avatarFile); // avatarFile will hold the file object
+      formData.append("address", formState.userName);
+      formData.append("phonenumber", formState.fullName);
+      3;
+      formData.append("name", formState.email);
+      formData.append("image", "a.png");
+      formData.append("storetypeid", 1);
+
+      // storetypeid
       console.log("formState");
-      console.log(formState, "formState");
+      console.log(formData, "formState");
       axios
         .post(
-           `${apiPrefix}/api/v1/management/${id}/producttype/insert`,
+          `${apiPrefix}/api/v1/management/info/insert`,
           formData,
           {
             headers: {
               "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
             },
           }
         )
         .then((response) => {
           message.success("Tạo mới thành công!");
-          router.push({
-            name: "ProductByStore",
-            params: {
-              id: id,
-            },
-          });
+          router.push({ name: "admin-users" });
         })
         .catch((error) => {
           console.log(error);
@@ -237,7 +249,6 @@ export default defineComponent({
     });
     const handleChangeUpload = (e) => {
       var p = BaseCommon.GetBase64(e.target.files[0]);
-      console.log(e.target.files[0], "e.target.files[0]");
       p.then((value) => {
         formState.urlAvatar = value;
         formState.rmavatar = "no";
@@ -260,8 +271,8 @@ export default defineComponent({
       rules,
       layout,
       resetForm,
-      //
       handleFileUpload,
+      //
       getOptionsLevelManage,
       getOptionsStatus,
       getOptionsRole,

@@ -13,6 +13,7 @@ export default {
     setup() {
         useMenu().onSelectedKeys(["admin-settings"]);
         const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
+        const apiPrefix = import.meta.env.VITE_API_PREFIX;
         return {
             authStoreClaim
         };

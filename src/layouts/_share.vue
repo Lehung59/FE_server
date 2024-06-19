@@ -3,34 +3,20 @@
   <div class="">
     <div class="row">
       <div class="col-sm-2 d-none d-sm-flex">
-        <div class="MuiBox-root jss156 jss93 menuExpand" id="menuRoot">
-          <nav>
+        <div
+          style="height: 100vh"
+          class="MuiBox-root jss156 jss93 menuExpand"
+          id="menuRoot"
+        >
+          <nav style="height: 100vh">
             <div class="MuiBox-root jss157 menuTopHeader">
               <div class="MuiBox-root jss158 menuTopLogo">
-                <span @click="navigateTo('')"
-                  ><img
-                    class="logo--full"
-                    src="https://sapo.dktcdn.net/fe-cdn-production/images/logo_sapo_white.svg"
-                    width="130"
-                /></span>
-                <button
-                  class="MuiButtonBase-root MuiIconButton-root menuTopToogle"
-                  tabindex="0"
-                  type="button"
-                  id="btnToggleMenu"
+                <a
+                  href="/dashboards"
+                  style="color: white; padding-left: 20px"
+                  class="MuiTypography-root MuiTypography-h3"
+                  >Tổng quan</a
                 >
-                  <span class="MuiIconButton-label"
-                    ><svg
-                      class="MuiSvgIcon-root"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-                      ></path></svg></span
-                  ><span class="MuiTouchRipple-root"></span>
-                </button>
               </div>
             </div>
             <hr class="menuDivider" />
@@ -41,36 +27,8 @@
                 style="overflow-y: auto"
               >
                 <nav class="MuiList-root menuList MuiList-padding">
-                  <a
-                    aria-current="page"
-                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem active MuiListItem-gutters MuiListItem-button active"
-                    tabindex="0"
-                    role="button"
-                    aria-disabled="false"
-                    href="/dashboard"
-                  >
-                    <div class="MuiListItemIcon-root">
-                      <svg
-                        viewBox="0 0 25 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M7.002 22a3 3 0 0 1-3-3v-6h-1c-.89 0-1.337-1.077-.707-1.707l9-9a1 1 0 0 1 1.414 0l9 9c.63.63.184 1.707-.707 1.707h-1v6a3 3 0 0 1-3 3h-10Zm5-17.586-6.648 6.65a1 1 0 0 1 .649.936v7a1 1 0 0 0 1 1h2v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4h2a1 1 0 0 0 1-1v-7a1 1 0 0 1 .649-.937l-6.65-6.649Zm1 11.586h-2v4h2v-4Z"
-                          fill="currentColor"
-                        ></path>
-                      </svg>
-                    </div>
-                    <div class="MuiListItemText-root menuItemTitle">
-                      <span
-                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                        >Tổng quan
-                      </span>
-                    </div>
-                  </a>
                   <div
+                    v-if="role == 'SHIPPER'"
                     class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
                     tabindex="0"
                     role="button"
@@ -104,21 +62,93 @@
                     </div>
                     <div class="MuiListItemText-root menuItemTitle">
                       <span
-                        @click="navigateTo('admin-users-create')"
+                        @click="navigateTo('danh-sach-don')"
                         class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                        >Đăng kí shipper</span
+                        >Danh sách đơn</span
                       >
                     </div>
-                    <svg
-                      class="MuiSvgIcon-root icon-collapse"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                      ></path>
-                    </svg>
+                  </div>
+                  <div
+                    v-if="role == 'SHIPPER'"
+                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
+                    tabindex="0"
+                    role="button"
+                    aria-disabled="false"
+                  >
+                    <div class="MuiListItemIcon-root">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.38 11.715a1.258 1.258 0 0 0-.424-.454 4.807 4.807 0 0 0-.549-.291 6.72 6.72 0 0 0-.548-.223 1.37 1.37 0 0 1-.424-.228.417.417 0 0 1 .04-.7c.14-.09.338-.134.594-.134.233 0 .444.042.634.124.19.083.306.125.349.125a.307.307 0 0 0 .27-.156.56.56 0 0 0 .1-.301c0-.103-.048-.193-.146-.269A.959.959 0 0 0 8.9 9.04a3.918 3.918 0 0 0-.535-.087V8.26c0-.235-.207-.426-.463-.426s-.463.19-.463.426v.753c-.19.047-.37.119-.537.216-.17.1-.307.24-.409.418a1.23 1.23 0 0 0-.153.62c0 .21.041.396.124.56.083.163.193.294.328.392.135.098.285.187.449.265.163.079.326.15.487.213.162.063.31.128.445.196a.977.977 0 0 1 .328.255.54.54 0 0 1 .125.35.47.47 0 0 1-.228.425 1.048 1.048 0 0 1-.57.143 1.231 1.231 0 0 1-.773-.261 2.402 2.402 0 0 0-.227-.18.383.383 0 0 0-.21-.082c-.105 0-.199.052-.282.154a.485.485 0 0 0-.124.304c0 .2.16.386.484.556.218.115.466.19.743.228v.655c0 .235.207.425.463.425s.463-.19.463-.425v-.675c.28-.056.52-.162.72-.318.31-.242.466-.587.466-1.034 0-.266-.057-.498-.17-.697Z"
+                          fill="currentColor"
+                          stroke="currentColor"
+                          stroke-width="0.5"
+                        ></path>
+                        <path
+                          d="M18.134 3.19h-3.126A1.538 1.538 0 0 0 13.51 2h-2.99c-.728 0-1.34.509-1.496 1.19H5.977C4.887 3.19 4 4.073 4 5.161v14.865C4 21.115 4.887 22 5.977 22h12.157c1.09 0 1.976-.885 1.976-1.973V5.162a1.977 1.977 0 0 0-1.976-1.973Zm-7.976.343c0-.2.163-.362.363-.362h2.99c.2 0 .363.162.363.362v.717c0 .2-.163.363-.363.363h-2.99a.363.363 0 0 1-.363-.363v-.717Zm7.976 17.296H5.977a.804.804 0 0 1-.804-.802V5.162c0-.442.36-.802.804-.802H8.99a1.537 1.537 0 0 0 1.531 1.423h2.99c.81 0 1.475-.629 1.532-1.423h3.09c.444 0 .805.36.805.802v14.865c0 .442-.361.802-.804.802Z"
+                          fill="currentColor"
+                          stroke="currentColor"
+                          stroke-width="0.5"
+                        ></path>
+                        <path
+                          d="M17.14 8.436h-5.715a.586.586 0 1 0 0 1.173h5.715a.586.586 0 0 0 0-1.173ZM17.14 12.513h-5.715a.587.587 0 0 0 0 1.173h5.715a.586.586 0 0 0 0-1.173ZM17.14 16.571h-5.715a.587.587 0 0 0 0 1.173h5.715a.586.586 0 0 0 0-1.173ZM9.157 16.498H6.769a.586.586 0 0 0 0 1.173h2.388a.586.586 0 1 0 0-1.172Z"
+                          fill="currentColor"
+                          stroke="currentColor"
+                          stroke-width="0.5"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="MuiListItemText-root menuItemTitle">
+                      <span
+                        @click="navigateTo('danh-sach-don-da-nhan')"
+                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                        >Đơn đã nhận</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    v-if="role == 'SHIPPER'"
+                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
+                    tabindex="0"
+                    role="button"
+                    aria-disabled="false"
+                  >
+                    <div class="MuiListItemIcon-root">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9.38 11.715a1.258 1.258 0 0 0-.424-.454 4.807 4.807 0 0 0-.549-.291 6.72 6.72 0 0 0-.548-.223 1.37 1.37 0 0 1-.424-.228.417.417 0 0 1 .04-.7c.14-.09.338-.134.594-.134.233 0 .444.042.634.124.19.083.306.125.349.125a.307.307 0 0 0 .27-.156.56.56 0 0 0 .1-.301c0-.103-.048-.193-.146-.269A.959.959 0 0 0 8.9 9.04a3.918 3.918 0 0 0-.535-.087V8.26c0-.235-.207-.426-.463-.426s-.463.19-.463.426v.753c-.19.047-.37.119-.537.216-.17.1-.307.24-.409.418a1.23 1.23 0 0 0-.153.62c0 .21.041.396.124.56.083.163.193.294.328.392.135.098.285.187.449.265.163.079.326.15.487.213.162.063.31.128.445.196a.977.977 0 0 1 .328.255.54.54 0 0 1 .125.35.47.47 0 0 1-.228.425 1.048 1.048 0 0 1-.57.143 1.231 1.231 0 0 1-.773-.261 2.402 2.402 0 0 0-.227-.18.383.383 0 0 0-.21-.082c-.105 0-.199.052-.282.154a.485.485 0 0 0-.124.304c0 .2.16.386.484.556.218.115.466.19.743.228v.655c0 .235.207.425.463.425s.463-.19.463-.425v-.675c.28-.056.52-.162.72-.318.31-.242.466-.587.466-1.034 0-.266-.057-.498-.17-.697Z"
+                          fill="currentColor"
+                          stroke="currentColor"
+                          stroke-width="0.5"
+                        ></path>
+                        <path
+                          d="M18.134 3.19h-3.126A1.538 1.538 0 0 0 13.51 2h-2.99c-.728 0-1.34.509-1.496 1.19H5.977C4.887 3.19 4 4.073 4 5.161v14.865C4 21.115 4.887 22 5.977 22h12.157c1.09 0 1.976-.885 1.976-1.973V5.162a1.977 1.977 0 0 0-1.976-1.973Zm-7.976.343c0-.2.163-.362.363-.362h2.99c.2 0 .363.162.363.362v.717c0 .2-.163.363-.363.363h-2.99a.363.363 0 0 1-.363-.363v-.717Zm7.976 17.296H5.977a.804.804 0 0 1-.804-.802V5.162c0-.442.36-.802.804-.802H8.99a1.537 1.537 0 0 0 1.531 1.423h2.99c.81 0 1.475-.629 1.532-1.423h3.09c.444 0 .805.36.805.802v14.865c0 .442-.361.802-.804.802Z"
+                          fill="currentColor"
+                          stroke="currentColor"
+                          stroke-width="0.5"
+                        ></path>
+                        <path
+                          d="M17.14 8.436h-5.715a.586.586 0 1 0 0 1.173h5.715a.586.586 0 0 0 0-1.173ZM17.14 12.513h-5.715a.587.587 0 0 0 0 1.173h5.715a.586.586 0 0 0 0-1.173ZM17.14 16.571h-5.715a.587.587 0 0 0 0 1.173h5.715a.586.586 0 0 0 0-1.173ZM9.157 16.498H6.769a.586.586 0 0 0 0 1.173h2.388a.586.586 0 1 0 0-1.172Z"
+                          fill="currentColor"
+                          stroke="currentColor"
+                          stroke-width="0.5"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="MuiListItemText-root menuItemTitle">
+                      <span
+                        @click="navigateTo('danh-sach-don-da-giao')"
+                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                        >Đơn đã giao</span
+                      >
+                    </div>
                   </div>
                   <div
                     class="MuiCollapse-container MuiCollapse-hidden"
@@ -171,7 +201,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
+                  <!-- <div
                     class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
                     tabindex="0"
                     role="button"
@@ -204,17 +234,7 @@
                         >Đăng kí user</span
                       >
                     </div>
-                    <svg
-                      class="MuiSvgIcon-root icon-collapse"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                      ></path>
-                    </svg>
-                  </div>
+                  </div> -->
                   <div
                     class="MuiCollapse-container MuiCollapse-hidden"
                     style="min-height: 0px"
@@ -229,7 +249,7 @@
                             tabindex="0"
                             role="button"
                             aria-disabled="false"
-                            to="/ashboards"
+                            to="/trang-chu-stores"
                           >
                             <div class="MuiListItemText-root menuItemTitle">
                               <span
@@ -294,6 +314,7 @@
                       </div>
                     </div>
                   </div>
+                  <!--
                   <div
                     class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
                     tabindex="0"
@@ -321,17 +342,7 @@
                         >Đăng kí manager</span
                       >
                     </div>
-                    <svg
-                      class="MuiSvgIcon-root icon-collapse"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                      ></path>
-                    </svg>
-                  </div>
+                  </div> -->
                   <div
                     class="MuiCollapse-container MuiCollapse-hidden"
                     style="min-height: 0px"
@@ -452,6 +463,7 @@
                     </div>
                   </div>
                   <div
+                    v-if="role == 'ADMIN'"
                     class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
                     tabindex="0"
                     role="button"
@@ -473,20 +485,137 @@
                       <span
                         @click="navigateTo('admin-store')"
                         class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                        >Danh sách sửa hàng</span
+                        >Danh sách cửa hàng</span
                       >
                     </div>
-                    <svg
-                      class="MuiSvgIcon-root icon-collapse"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                      ></path>
-                    </svg>
                   </div>
+                  <div
+                    v-if="role == 'MANAGER'"
+                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
+                    tabindex="0"
+                    role="button"
+                    aria-disabled="false"
+                  >
+                    <div class="MuiListItemIcon-root">
+                      <img
+                        style="width: 30px"
+                        src="../../public/payment.png"
+                        alt=""
+                        srcset=""
+                      />
+                    </div>
+
+                    <div class="MuiListItemText-root menuItemTitle">
+                      <a
+                      :href="'/importExport/' + storeId.storeId"
+                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                        >Hoá đơn</a
+                      >
+                    </div>
+                  </div>
+                  <div
+                    v-if="role == 'MANAGER'"
+                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
+                    tabindex="0"
+                    role="button"
+                    aria-disabled="false"
+                  >
+                    <div class="MuiListItemIcon-root">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5Zm0 8c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3-1.346 3-3 3Zm9 11v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1h2Z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="MuiListItemText-root menuItemTitle">
+                      <a
+                        :href="'/store/staff/'+ storeId.storeId"
+                      
+
+                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                        >Khách hàng</a
+                      >
+                    </div>
+                  </div>
+                  <div
+                    v-if="role == 'MANAGER'"
+                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
+                    tabindex="0"
+                    role="button"
+                    aria-disabled="false"
+                  >
+                    <div class="MuiListItemIcon-root">
+                      <img
+                        style="width: 30px"
+                        src="../../public/salary.png"
+                        alt=""
+                        srcset=""
+                      />
+                    </div>
+
+                    <div class="MuiListItemText-root menuItemTitle">
+                      <a
+                      
+                       :href="'/doanh-thu-store/' + storeId.storeId"
+                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                        >Doanh thu</a
+                      >
+                    </div>
+                  </div>
+                  <div
+                    v-if="role == 'MANAGER'"
+                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
+                    tabindex="0"
+                    role="button"
+                    aria-disabled="false"
+                  >
+                    <div class="MuiListItemIcon-root">
+                      <img
+                        style="width: 30px"
+                        src="../../public/products.png"
+                        alt=""
+                        srcset=""
+                      />
+                    </div>
+
+                    <div class="MuiListItemText-root menuItemTitle">
+                      <a
+                        :href="'/ProductByStore/'+ storeId.storeId"
+                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                        >Sản phẩm</a
+                      >
+                    </div>
+                  </div>
+                  <div
+                    v-if="role == 'MANAGER'"
+                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
+                    tabindex="0"
+                    role="button"
+                    aria-disabled="false"
+                  >
+                    <div class="MuiListItemIcon-root">
+                      <img
+                        style="width: 30px"
+                        src="../../public/order-now.png"
+                        alt=""
+                        srcset=""
+                      />
+                    </div>
+
+                    <div class="MuiListItemText-root menuItemTitle">
+                      <a
+                        :href="'/danh-sach-order-store/' + storeId.storeId"
+                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+                        >Đơn hàng</a
+                      >
+                    </div>
+                  </div>
+
                   <div
                     class="MuiCollapse-container MuiCollapse-hidden"
                     style="min-height: 0px"
@@ -527,7 +656,7 @@
                       </div>
                     </div>
                   </div>
-                  <div
+                  <!-- <div
                     class="MuiTypography-root MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-body1"
                     tabindex="0"
                     role="button"
@@ -570,565 +699,7 @@
                         Thêm info store
                       </span>
                     </div>
-                  </div>
-                  <div
-                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
-                    tabindex="0"
-                    role="button"
-                    aria-disabled="false"
-                  >
-                    <div class="MuiListItemIcon-root">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M10 12.217c0 1.074.896 1.945 2 1.945a.66.66 0 0 1 .667.648.66.66 0 0 1-.667.649.673.673 0 0 1-.579-.326.678.678 0 0 0-.91-.237.64.64 0 0 0-.243.885c.24.405.624.706 1.065.86v.71c0 .358.3.649.667.649a.66.66 0 0 0 .667-.648v-.707c.776-.267 1.333-.988 1.333-1.835 0-1.073-.896-1.944-2-1.944a.66.66 0 0 1-.667-.649c0-.357.3-.648.667-.648.236 0 .459.123.579.326a.678.678 0 0 0 .91.237.64.64 0 0 0 .243-.885 2.007 2.007 0 0 0-1.065-.861v-.738A.66.66 0 0 0 12 9a.66.66 0 0 0-.667.648v.734c-.776.268-1.333.988-1.333 1.835Z"
-                          fill="currentColor"
-                          stroke="currentColor"
-                          stroke-width="0.5"
-                        ></path>
-                        <path
-                          d="M19.788 5.69V2.91a.91.91 0 0 0-.91-.91H6.732C5.226 2 3.5 3.223 3.5 4.727v14.546C3.5 20.777 5.226 22 6.733 22h12.752c.503 0 1.015-.407 1.015-.91V6.546c0-.395-.358-.73-.712-.856ZM6.733 4h11.233v1.5H6.733c-.503 0-.911-.271-.911-.773 0-.501.408-.727.91-.727ZM18.5 20H6.733a.911.911 0 0 1-.911-.91V7.345c.285.1.591.156.91.156H18.5V20Z"
-                          fill="currentColor"
-                        ></path>
-                      </svg>
-                    </div>
-                    <div class="MuiListItemText-root menuItemTitle">
-                      <span
-                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                        >Sổ quỹ</span
-                      >
-                    </div>
-                    <svg
-                      class="MuiSvgIcon-root icon-collapse"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div
-                    class="MuiCollapse-container MuiCollapse-hidden"
-                    style="min-height: 0px"
-                  >
-                    <div class="MuiCollapse-wrapper">
-                      <div class="MuiCollapse-wrapperInner jss187">
-                        <div
-                          class="MuiBox-root jss253 menuListSubMenuItem menuListSubMenuItemLevel-0"
-                        >
-                          <a
-                            class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
-                            tabindex="0"
-                            role="button"
-                            aria-disabled="false"
-                            href="/admin/receipt_vouchers"
-                          >
-                            <div class="MuiListItemText-root menuItemTitle">
-                              <span
-                                class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                >Phiếu thu
-                              </span>
-                            </div> </a
-                          ><a
-                            class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
-                            tabindex="0"
-                            role="button"
-                            aria-disabled="false"
-                            href="/admin/payment_vouchers"
-                          >
-                            <div class="MuiListItemText-root menuItemTitle">
-                              <span
-                                class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                >Phiếu chi
-                              </span>
-                            </div> </a
-                          ><a
-                            class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
-                            tabindex="0"
-                            role="button"
-                            aria-disabled="false"
-                            href="/admin/reports/vouchers"
-                          >
-                            <div class="MuiListItemText-root menuItemTitle">
-                              <span
-                                class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                >Sổ quỹ
-                              </span>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
-                    tabindex="0"
-                    role="button"
-                    aria-disabled="false"
-                  >
-                    <div class="MuiListItemIcon-root">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3 3v17a1 1 0 0 0 1 1h17v-2H5V3H3Z"
-                          fill="currentColor"
-                        ></path>
-                        <path
-                          d="M14.77 14.098a.985.985 0 0 0 1.374 0L21 9.344 19.627 8l-4.17 4.082-2.227-2.18a.985.985 0 0 0-1.374 0L7 14.656 8.373 16l4.17-4.082 2.227 2.18Z"
-                          fill="currentColor"
-                        ></path>
-                      </svg>
-                    </div>
-                    <div class="MuiListItemText-root menuItemTitle">
-                      <span
-                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                        >Báo cáo</span
-                      >
-                    </div>
-                    <svg
-                      class="MuiSvgIcon-root icon-collapse"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div
-                    class="MuiCollapse-container MuiCollapse-hidden"
-                    style="min-height: 0px"
-                  >
-                    <div class="MuiCollapse-wrapper">
-                      <div class="MuiCollapse-wrapperInner jss187">
-                        <div
-                          class="MuiBox-root jss254 menuListSubMenuItem menuListSubMenuItemLevel-0"
-                        >
-                          <a
-                            class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
-                            tabindex="0"
-                            role="button"
-                            aria-disabled="false"
-                            href="/admin/analytics"
-                          >
-                            <div class="MuiListItemText-root menuItemTitle">
-                              <span
-                                class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                >Báo cáo bán hàng
-                              </span>
-                            </div> </a
-                          ><a
-                            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-colorPrimary"
-                            tabindex="0"
-                            role="button"
-                            aria-disabled="false"
-                            to="/admin/analytic_purchase_orders"
-                            href="/admin/analytic_purchase_orders"
-                          >
-                            <div class="MuiListItemText-root menuItemTitle">
-                              <span
-                                class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                >Báo cáo nhập hàng
-                              </span>
-                            </div> </a
-                          ><a
-                            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-colorPrimary"
-                            tabindex="0"
-                            role="button"
-                            aria-disabled="false"
-                            to="/admin/reports/inventories"
-                            href="/admin/reports/inventories"
-                          >
-                            <div class="MuiListItemText-root menuItemTitle">
-                              <span
-                                class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                >Báo cáo kho
-                              </span>
-                            </div> </a
-                          ><a
-                            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-colorPrimary"
-                            tabindex="0"
-                            role="button"
-                            aria-disabled="false"
-                            to="/admin/reports/finance"
-                            href="/admin/reports/finance"
-                          >
-                            <div class="MuiListItemText-root menuItemTitle">
-                              <span
-                                class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                >Báo cáo tài chính
-                              </span>
-                            </div> </a
-                          ><a
-                            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-colorPrimary"
-                            tabindex="0"
-                            role="button"
-                            aria-disabled="false"
-                            to="/admin/analytic_customers"
-                            href="/admin/analytic_customers"
-                          >
-                            <div class="MuiListItemText-root menuItemTitle">
-                              <span
-                                class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                >Báo cáo khách hàng
-                              </span>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr class="menuDivider" />
-                  <div
-                    class="MuiBox-root jss255"
-                    id="channels-sales"
-                    style="width: 100%"
-                  >
-                    <a
-                      class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiListItem-root jss94 MuiListItem-gutters MuiTypography-colorPrimary"
-                      href="/admin/settings/channels"
-                      target="_blank"
-                      style="color: unset; text-decoration: none"
-                    >
-                      <div class="MuiBox-root jss1087">
-                        <p
-                          class="MuiTypography-root title MuiTypography-body1"
-                          style="color: rgb(211, 213, 215); font-weight: 700"
-                        >
-                          Kênh bán hàng
-                        </p>
-                        <div
-                          class="MuiListItemIcon-root"
-                          style="min-width: unset"
-                        >
-                          <svg
-                            class="MuiSvgIcon-root"
-                            focusable="false"
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                          >
-                            <path
-                              d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-                            ></path>
-                          </svg>
-                        </div>
-                      </div> </a
-                    ><a
-                      class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-colorPrimary"
-                      tabindex="0"
-                      role="button"
-                      aria-disabled="false"
-                      to="/admin/pos_v2"
-                      href="/admin/pos_v2"
-                    >
-                      <div class="MuiListItemIcon-root">
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M3.146 5.563V15.79a.692.692 0 0 0 .686.69h16.335a.685.685 0 0 0 .687-.688V5.565a.692.692 0 0 0-.687-.69H3.832a.685.685 0 0 0-.686.688Zm16.336.69V15.1H4.518l.001-8.845h14.963Z"
-                            fill="currentColor"
-                            stroke="currentColor"
-                            stroke-width="0.25"
-                          ></path>
-                          <path
-                            d="M1.562 22.125h20.876c.193 0 .37-.097.495-.255a.936.936 0 0 0 .192-.578v-5.584a.936.936 0 0 0-.192-.578.635.635 0 0 0-.495-.255H1.562a.635.635 0 0 0-.495.255.936.936 0 0 0-.192.578v5.584c0 .213.067.42.192.578a.635.635 0 0 0 .495.255Zm20.189-5.584v3.918H2.248V16.54h19.503ZM6.496 13.125h4.008a.68.68 0 0 0 .43-.148.5.5 0 0 0 .191-.385V8.408a.5.5 0 0 0-.19-.385.68.68 0 0 0-.43-.148h-4.01a.68.68 0 0 0-.43.148.5.5 0 0 0-.19.385v4.184a.5.5 0 0 0 .19.385.679.679 0 0 0 .43.148Zm3.388-4.184v3.118H7.116V8.941h2.768ZM13.66 10.452a.787.787 0 0 0 .784-.788.787.787 0 0 0-.785-.789.787.787 0 0 0-.784.789c0 .434.35.788.784.788ZM16.473 10.383a.787.787 0 0 0 .784-.788.787.787 0 0 0-.784-.79.786.786 0 0 0-.784.79c0 .434.35.788.784.788ZM13.66 12.723a.787.787 0 0 0 .784-.789.786.786 0 0 0-.785-.788.786.786 0 0 0-.784.788c0 .435.35.79.784.79ZM16.473 12.654a.787.787 0 0 0 .784-.789.786.786 0 0 0-.784-.788.786.786 0 0 0-.784.788c0 .435.35.789.784.789Z"
-                            fill="currentColor"
-                            stroke="currentColor"
-                            stroke-width="0.25"
-                          ></path>
-                          <path
-                            d="M9.562 19.256h4.542a.685.685 0 0 0 .686-.69.692.692 0 0 0-.686-.691H9.562a.685.685 0 0 0-.687.69.692.692 0 0 0 .687.69Z"
-                            fill="currentColor"
-                            stroke="currentColor"
-                            stroke-width="0.25"
-                          ></path>
-                          <path
-                            d="M15.323 6h-2.646a.72.72 0 0 1-.479-.177.573.573 0 0 1-.198-.427V2.604c0-.16.071-.314.198-.427A.72.72 0 0 1 12.677 2h2.646a.72.72 0 0 1 .479.177.573.573 0 0 1 .198.427v2.792c0 .16-.071.314-.198.427a.72.72 0 0 1-.479.177Zm-1.97-1.207h1.294V3.207h-1.294v1.586Z"
-                            fill="currentColor"
-                          ></path>
-                          <path
-                            d="M15.323 6h-2.646a.72.72 0 0 1-.479-.177.573.573 0 0 1-.198-.427V2.604c0-.16.071-.314.198-.427A.72.72 0 0 1 12.677 2h2.646a.72.72 0 0 1 .479.177.573.573 0 0 1 .198.427v2.792c0 .16-.071.314-.198.427a.72.72 0 0 1-.479.177Zm-1.97-1.207h1.294V3.207h-1.294v1.586Z"
-                            stroke="currentColor"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div class="MuiListItemText-root menuItemTitle">
-                        <span
-                          class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                          >Bán tại quầy
-                        </span>
-                      </div> </a
-                    ><a
-                      class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-colorPrimary"
-                      tabindex="0"
-                      role="button"
-                      aria-disabled="false"
-                      to="/admin/api/auth?api_key=c3d86925db7e486f8a75d37040e52216"
-                      href="/admin/api/auth?api_key=c3d86925db7e486f8a75d37040e52216"
-                    >
-                      <div class="MuiListItemIcon-root">
-                        <svg
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M5.5 15c.91 0 1.733-.358 2.357-.93l6.26 3.577A3.483 3.483 0 0 0 14 18.5c0 1.93 1.57 3.5 3.5 3.5s3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5c-.91 0-1.733.358-2.357.93l-6.26-3.577c.063-.247.103-.502.108-.768l6.151-3.515c.625.572 1.448.93 2.358.93C19.43 9 21 7.43 21 5.5S19.43 2 17.5 2 14 3.57 14 5.5c0 .296.048.578.117.853L8.433 9.602A3.496 3.496 0 0 0 5.5 8C3.57 8 2 9.57 2 11.5S3.57 15 5.5 15Zm12 2c.827 0 1.5.673 1.5 1.5s-.673 1.5-1.5 1.5-1.5-.673-1.5-1.5.673-1.5 1.5-1.5Zm0-13c.827 0 1.5.673 1.5 1.5S18.327 7 17.5 7 16 6.327 16 5.5 16.673 4 17.5 4Zm-12 6c.827 0 1.5.673 1.5 1.5S6.327 13 5.5 13 4 12.327 4 11.5 4.673 10 5.5 10Z"
-                            fill="currentColor"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div class="MuiListItemText-root menuItemTitle">
-                        <span
-                          class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                          >Kênh Social
-                        </span>
-                      </div> </a
-                    ><a
-                      class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-colorPrimary"
-                      tabindex="0"
-                      role="button"
-                      aria-disabled="false"
-                      to="/admin/api/auth?api_key=0a8aa0cbfede4d7bb7306e363ccda20c"
-                      href="/admin/api/auth?api_key=0a8aa0cbfede4d7bb7306e363ccda20c"
-                    >
-                      <div class="MuiListItemIcon-root">
-                        <svg fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g
-                            clip-path="url(#add-cart-icon_svg__a)"
-                            fill="currentColor"
-                          >
-                            <path
-                              d="M21.738 8.25c-.162-.382-.481-.514-.867-.514-.863-.005-1.727-.005-2.594 0-.145 0-.17-.034-.129-.175.216-.693.25-1.39.112-2.104-.473-2.494-3.046-4.03-5.461-3.258a4.294 4.294 0 0 0-2.78 5.35c.032.112.074.187-.109.187-.988-.009-1.975-.005-2.967 0-.12 0-.166-.038-.195-.154-.125-.473-.266-.942-.395-1.415-.132-.49-.41-.714-.925-.714a92.16 92.16 0 0 0-1.515 0c-.523.004-.909.357-.913.838-.004.473.39.843.913.847.278.004.552.004.83 0 .12-.004.174.042.203.154.12.448.245.892.37 1.336.743 2.693 1.486 5.383 2.233 8.076.153.548.406.735.97.735H18.556c.506 0 .78-.2.926-.689.228-.768.448-1.536.672-2.303.54-1.86 1.075-3.723 1.61-5.587a.907.907 0 0 0-.025-.61ZM14.11 3.664c1.407 0 2.578 1.208 2.573 2.656-.004 1.395-1.19 2.57-2.594 2.565a2.599 2.599 0 0 1-2.585-2.606c0-1.432 1.178-2.615 2.606-2.615Zm5.694 5.952c-.415 1.415-.821 2.834-1.232 4.254-.162.564-.328 1.124-.482 1.689-.041.158-.112.216-.282.216-1.432-.009-2.864-.005-4.291-.005-1.424 0-2.847-.004-4.27.005-.171 0-.237-.05-.283-.212-.49-1.797-.988-3.59-1.486-5.383-.054-.2-.104-.402-.17-.598-.042-.128-.013-.166.124-.166.581.009 1.163.005 1.744.005h1.867c.1 0 .183.016.266.087.9.78 1.955 1.125 3.137 1.033.905-.07 1.71-.41 2.403-1.004a.421.421 0 0 1 .295-.116 253.2 253.2 0 0 0 2.51 0c.159-.005.2.029.15.195ZM10.118 18.053a1.948 1.948 0 0 0-1.988 1.971C8.13 21.125 9 22 10.097 22a1.99 1.99 0 0 0 1.98-1.976 1.976 1.976 0 0 0-1.96-1.97Zm-.013 2.283c-.153.008-.303-.133-.307-.29a.309.309 0 0 1 .299-.325.304.304 0 0 1 .303.3.32.32 0 0 1-.295.315ZM16.949 18.053c-1.108 0-1.976.86-1.976 1.963 0 1.108.864 1.984 1.96 1.984a1.988 1.988 0 0 0 1.987-1.988 1.973 1.973 0 0 0-1.971-1.959Zm.004 2.283c-.154.008-.303-.129-.311-.29a.306.306 0 0 1 .299-.325.301.301 0 0 1 .303.3.32.32 0 0 1-.29.315Z"
-                            ></path>
-                            <path
-                              d="M13.554 13.583c-1.258 0-2.515-.012-3.773.009-.435.008-.788-.3-.88-.747-.082-.415.133-.868.503-1.042.124-.058.253-.058.386-.058 2.523 0 5.046.012 7.57-.008.643-.005 1.025.601.884 1.178-.096.374-.386.68-.868.677-1.278-.021-2.552-.009-3.822-.009ZM14.073 8.267a.828.828 0 0 1-.818-.822c-.004-.228-.037-.32-.299-.315a.838.838 0 0 1-.83-.677.831.831 0 0 1 .498-.93.663.663 0 0 1 .34-.07c.258.033.291-.083.287-.303a.792.792 0 0 1 .328-.664c.266-.2.556-.224.86-.091.344.153.489.448.489.797 0 .22.07.257.27.257.514.004.871.378.863.859-.009.46-.386.813-.893.818-.165 0-.232.024-.244.22-.021.589-.357.93-.851.92Z"
-                            ></path>
-                          </g>
-                          <defs>
-                            <clipPath id="add-cart-icon_svg__a">
-                              <path
-                                fill="#fff"
-                                transform="translate(3 2)"
-                                d="M0 0h18.805v20H0z"
-                              ></path>
-                            </clipPath>
-                          </defs>
-                        </svg>
-                      </div>
-                      <div class="MuiListItemText-root menuItemTitle">
-                        <span
-                          class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                          >Sàn TMĐT
-                        </span>
-                      </div>
-                    </a>
-                  </div>
-                  <hr class="menuDivider" />
-                  <div
-                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
-                    tabindex="0"
-                    role="button"
-                    aria-disabled="false"
-                  >
-                    <div class="MuiListItemIcon-root">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M13 6h2v3h3v2h-3v3h-2v-3h-3V9h3V6Z"
-                          fill="currentColor"
-                        ></path>
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M8 2h12c1.103 0 2 .897 2 2v12c0 1.103-.897 2-2 2H8c-1.103 0-2-.897-2-2V4c0-1.103.897-2 2-2Zm0 2v12h12.002L20 4H8Z"
-                          fill="currentColor"
-                        ></path>
-                        <path
-                          d="M2 8h2v12h12v2H4c-1.103 0-2-.897-2-2V8Z"
-                          fill="currentColor"
-                        ></path>
-                      </svg>
-                    </div>
-                    <div class="MuiListItemText-root menuItemTitle">
-                      <span
-                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                        >Ứng dụng</span
-                      >
-                    </div>
-                    <svg
-                      class="MuiSvgIcon-root icon-collapse"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div
-                    class="MuiCollapse-container MuiCollapse-hidden"
-                    style="min-height: 0px"
-                  >
-                    <div class="MuiCollapse-wrapper">
-                      <div class="MuiCollapse-wrapperInner jss187">
-                        <div
-                          class="MuiBox-root jss257 menuListSubMenuItem menuListSubMenuItemLevel-0"
-                        >
-                          <div
-                            class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button"
-                            tabindex="0"
-                            role="button"
-                            aria-disabled="false"
-                          >
-                            <div class="MuiListItemText-root menuItemTitle">
-                              <span
-                                class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                >Khuyến mại</span
-                              >
-                            </div>
-                            <svg
-                              class="MuiSvgIcon-root icon-collapse"
-                              focusable="false"
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                            >
-                              <path
-                                d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
-                              ></path>
-                            </svg>
-                          </div>
-                          <div
-                            class="MuiCollapse-container MuiCollapse-hidden"
-                            style="min-height: 0px"
-                          >
-                            <div class="MuiCollapse-wrapper">
-                              <div class="MuiCollapse-wrapperInner jss187">
-                                <div
-                                  class="MuiBox-root jss258 menuListSubMenuItem menuListSubMenuItemLevel-1"
-                                >
-                                  <a
-                                    class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-colorPrimary"
-                                    tabindex="0"
-                                    role="button"
-                                    aria-disabled="false"
-                                    to="/admin/advanced/sale_offs"
-                                    href="/admin/advanced/sale_offs"
-                                  >
-                                    <div
-                                      class="MuiListItemText-root menuItemTitle"
-                                    >
-                                      <span
-                                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                        >Quản lý khuyến mại
-                                      </span>
-                                    </div> </a
-                                  ><a
-                                    class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-colorPrimary"
-                                    tabindex="0"
-                                    role="button"
-                                    aria-disabled="false"
-                                    to="/admin/advanced/coupon"
-                                    href="/admin/advanced/coupon"
-                                  >
-                                    <div
-                                      class="MuiListItemText-root menuItemTitle"
-                                    >
-                                      <span
-                                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                        >Quản lý mã giảm giá
-                                      </span>
-                                    </div> </a
-                                  ><a
-                                    class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-colorPrimary"
-                                    tabindex="0"
-                                    role="button"
-                                    aria-disabled="false"
-                                    to="/admin/advanced/coupon/settings"
-                                    href="/admin/advanced/coupon/settings"
-                                  >
-                                    <div
-                                      class="MuiListItemText-root menuItemTitle"
-                                    >
-                                      <span
-                                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                        >Cấu hình
-                                      </span>
-                                    </div>
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <a
-                            class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiButtonBase-root MuiListItem-root jss186 rootMenuItem MuiListItem-gutters MuiListItem-button MuiTypography-colorPrimary"
-                            tabindex="0"
-                            role="button"
-                            aria-disabled="false"
-                            to="/admin/advanced"
-                            href="/admin/advanced"
-                          >
-                            <div class="MuiListItemText-root menuItemTitle">
-                              <span
-                                class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                                >Tất cả ứng dụng
-                              </span>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <a
-                    class="MuiButtonBase-root MuiListItem-root jss186 rootMenuItem menu_setting MuiListItem-gutters MuiListItem-button"
-                    tabindex="0"
-                    role="button"
-                    aria-disabled="false"
-                    href="/admin/settings"
-                  >
-                    <div class="MuiListItemIcon-root">
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
-                          fill="currentColor"
-                        ></path>
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="m2.43 8.576 1.82-3.152a1 1 0 0 1 1.17-.453l1.836.585a7.971 7.971 0 0 1 1.535-.886l.412-1.884A1 1 0 0 1 10.18 2h3.64a1 1 0 0 1 .977.786l.412 1.884a7.973 7.973 0 0 1 1.535.886l1.837-.585a1 1 0 0 1 1.17.453l1.82 3.152a1 1 0 0 1-.193 1.24l-1.425 1.298a7.981 7.981 0 0 1 0 1.772l1.425 1.299a1 1 0 0 1 .192 1.239l-1.82 3.152a1 1 0 0 1-1.17.453l-1.836-.585a7.967 7.967 0 0 1-1.535.886l-.412 1.884a1 1 0 0 1-.977.786h-3.64a1 1 0 0 1-.977-.786l-.412-1.884a7.967 7.967 0 0 1-1.535-.886l-1.837.585a1 1 0 0 1-1.17-.453l-1.82-3.152a1 1 0 0 1 .193-1.24l1.425-1.298a7.973 7.973 0 0 1 0-1.772L2.622 9.815a1 1 0 0 1-.192-1.239ZM13.015 4l.458 2.092.933.41c.211.092.416.196.614.312l.003.002c.184.107.363.224.536.351l.82.604 2.042-.65 1.015 1.758-1.583 1.443.112 1.012c.024.221.037.442.036.663v.004c0 .222-.012.443-.036.665l-.112 1.012 1.583 1.443-1.015 1.758-2.041-.65-.821.604a5.99 5.99 0 0 1-.543.355l-.003.002a5.97 5.97 0 0 1-.607.309l-.933.409L13.015 20h-2.03l-.458-2.092-.933-.41a5.991 5.991 0 0 1-.573-.288l-.003-.002a5.975 5.975 0 0 1-.577-.375l-.82-.604-2.042.65-1.015-1.758 1.583-1.443-.112-1.012a5.973 5.973 0 0 1-.036-.664v-.004c0-.221.011-.443.036-.664l.112-1.012-1.583-1.443L5.58 7.121l2.041.65.821-.604a5.97 5.97 0 0 1 .57-.371l.004-.002a5.97 5.97 0 0 1 .58-.293l.932-.409L10.985 4h2.03Z"
-                          fill="currentColor"
-                        ></path>
-                      </svg>
-                    </div>
-                    <div class="MuiListItemText-root menuItemTitle">
-                      <span
-                        class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                        >Cấu hình
-                      </span>
-                    </div>
-                  </a>
+                  </div> -->
                 </nav>
               </div>
             </div>
@@ -1153,6 +724,28 @@ export default {
     navigateTo(route) {
       this.$router.push({ name: route });
     },
+    navigateToProduct(storeId) {
+      this.$router.push({ name: "ProductByStore", params: { storeId } });
+    },
+  },
+
+  data() {
+    return {
+      role: null,
+      storeId : JSON.parse(localStorage.getItem("auth"))
+    };
+  },
+
+  mounted() {
+    try {
+      const data = JSON.parse(localStorage.getItem("auth"));
+      this.role = data.role;
+      console.log(data.role);
+      console.log("Retrieved role:", this.role);
+    } catch (error) {
+      console.error("Error retrieving role from localStorage:", error);
+      // Handle potential errors gracefully (e.g., display a message)
+    }
   },
 };
 </script>

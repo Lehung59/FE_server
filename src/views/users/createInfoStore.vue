@@ -2,74 +2,61 @@
   <a-card style="width: 100%">
     <div class="row mb-3">
       <div class="col-12">
-        <a-breadcrumb>
-          <a-breadcrumb-item>
-            <router-link :to="{ name: 'admin-dashboards' }"
-              >Trang chủ</router-link
-            >
-          </a-breadcrumb-item>
-          <a-breadcrumb-item>
-            <router-link :to="{ name: 'admin-users' }">Info store</router-link>
-          </a-breadcrumb-item>
-          <a-breadcrumb-item>Thêm mới</a-breadcrumb-item>
-        </a-breadcrumb>
-        <h1></h1>
+        <h1>Hãy bắt đầu tạo thông tin về cửa hàng của bạn</h1>
       </div>
       <div class="col-12 col-sm-12 mb-3">
         <!-- @submit.prevent="createUsers()" -->
-        <a-form
-          class="p-3"
-          name="custom-validation"
-          ref="formRef"
-          :model="formState"
-          :rules="rules"
-          v-bind="layout"
-          @finish="createUsers()"
-        >
+        <a-form class="p-3" name="custom-validation" ref="formRef" :model="formState" :rules="rules" v-bind="layout"
+          @finish="createUsers()">
           <div class="row">
             <div class="col-12 col-sm-9">
-              <a-form-item
-                ref="userName"
-                label="address"
-                required
-                name="userName"
-              >
-                <a-input v-model:value="formState.userName" />
-                <small v-if="errors && errors.UserName" class="text-danger">{{
-                  errors.UserName[0]
-                }}</small>
+              <a-form-item ref="name" label="Tên cửa hàng" required name="name">
+                <a-input v-model:value="formState.name" />
+                <small v-if="errors && errors.name" class="text-danger">{{
+              errors.name[0]
+            }}</small>
               </a-form-item>
-              <a-form-item
-                ref="fullName"
-                label="phonenumber"
-                required
-                name="fullName"
-              >
-                <a-input v-model:value="formState.fullName" />
-                <small v-if="errors && errors.FullName" class="text-danger">{{
-                  errors.FullName[0]
-                }}</small>
+
+              <a-form-item ref="address" label="Địa chỉ" required name="address">
+                <a-input v-model:value="formState.address" />
+                <small v-if="errors && errors.address" class="text-danger">{{
+              errors.UserName[0]
+            }}</small>
               </a-form-item>
-              <a-form-item ref="email" label="name" required name="email">
-                <a-input v-model:value="formState.email" />
+
+              <a-form-item ref="phonenumber" label="Số điện thoại" required name="phonenumber">
+                <a-input v-model:value="formState.phonenumber" />
+                <small v-if="errors && errors.phonenumber" class="text-danger">{{
+              errors.phonenumber[0]
+            }}</small>
               </a-form-item>
-              <a-form-item ref="urlAvatar" label="avatar" name="urlAvatar">
-                <input type="file" @change="handleFileUpload" />
+
+
+
+              <a-form-item ref="storeTypeId" label="Loại cửa hàng" required name="storeTypeId">
+                <a-select v-model:value="formState.storeTypeId" style="width: 100%" placeholder="Chọn loại cửa hàng"
+                  @change="handleChange">
+                  <a-select-option v-for="typee in storeTypes" :key="typee.storeTypeId" :value="typee.storeTypeId">
+                    {{ typee.storeTypeName }}
+                  </a-select-option>
+                </a-select>
               </a-form-item>
+
+
+              <a-form-item label="Ảnh đại diện mới">
+                <input type="file" @change="previewFiles" />
+                <div class="avatar-container">
+                  <img v-if="newImage" :src="newImage" class="avatar" alt="avatar" />
+                  <img v-else :src="formState.avatarProduct" class="avatar" alt="avatar" />
+                </div>
+              </a-form-item>
+
               <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-                <a-button class="me-0 me-sm-2 mb-3 mb-sm-0">
-                  <router-link :to="{ name: 'admin-users' }">
-                    <span>Quay lại</span>
-                  </router-link>
+                <a-button @click="goBack" class="me-0 me-sm-2 mb-3 mb-sm-0">
+                  <span>Quay lại</span>
                 </a-button>
-                <a-button
-                  class="me-0 me-sm-2 mb-3 mb-sm-0 bg-info text-light"
-                  @click="resetForm"
-                  >Reset</a-button
-                >
-                <a-button type="primary" html-type="submit" class="bg-success"
-                  >Lưu</a-button
-                >
+                <a-button class="me-0 me-sm-2 mb-3 mb-sm-0 bg-info text-light" @click="resetForm">Reset</a-button>
+                <a-button type="primary" html-type="submit" class="bg-success" :loading=formState.loading>Lưu</a-button>
               </a-form-item>
             </div>
           </div>
@@ -97,7 +84,10 @@ export default defineComponent({
   setup() {
     useMenu().onSelectedKeys(["admin-users"]);
     const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
+    const apiPrefix = import.meta.env.VITE_API_PREFIX;
+    console.log(apiPrefix)
     const router = useRouter();
+    const token = JSON.parse(localStorage.getItem("token")); // Lấy token từ localStorage
     const users = reactive({
       optionsLevelManage: [],
       optionsRole: [],
@@ -106,32 +96,171 @@ export default defineComponent({
     const errors = ref({});
     const formRef = ref();
     const formState = reactive({
-      userName: "",
-      fullName: "",
-      email: "",
-      passWord: "",
-      rePassWord: "",
-      levelManage: "",
-      roleID: "",
-      status: "",
+
+      storeTypeId: "",
+      address: "",
+      phonenumber: "",
+      name: "",
+      image: "",
+      loading: false,
+      avatarProduct: "",
+      avatarFile: null,
+
       //
-      urlAvatar: "",
-      fileAvatar: null,
-      rmavatar: "yes",
-      //
-      change_password: false,
     });
-    const fileAvatar = ref(null);
-    let validatePass = async (rule, value) => {
-      if (value === "") {
-        return Promise.reject("Please input the password");
-      } else {
-        if (formState.rePassWord !== "") {
-          formRef.value.validateFields("rePassWord");
+    const avatarFile = ref(null); // Store the file object
+    const newImage = ref(''); // Store the base64 URL
+    const handleChange = value => {
+      console.log(`selected ${value}`);
+    };
+    const storeTypes = ref([]);
+    const rules = {
+
+
+      address: [
+        {
+          required: true,
+          message: "Địa chỉ không để trống.",
+          trigger: "change",
+        },
+      ],
+      phonenumber: [
+        {
+          required: true,
+          message: "Điện thoại không để trống.",
+          trigger: "change",
+        },
+      ],
+      name: [
+        {
+          required: true,
+          message: "Tên cửa hàng không để trống.",
+          trigger: "change",
+        },
+      ],
+    };
+    const fetchProduct = async () => {
+      try {
+        console.log(13132223)
+
+        const response = await axios.get(
+          ` ${apiPrefix}/api/v1/auth/storetype/view`
+        );
+        if (response.data.status === "OK") {
+          console.log(response.data)
+          storeTypes.value = response.data.data;
+        } else {
+          console.error(response.data.message);
         }
-        return Promise.resolve();
+      } catch (error) {
+        console.error(error);
       }
     };
+
+
+    const previewFiles = (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+      if (!isJpgOrPng) {
+        message.error('You can only upload JPG/PNG file!');
+        return;
+      }
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isLt2M) {
+        message.error('Image must smaller than 2MB!');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        newImage.value = reader.result; // Set the base64 string for preview
+        avatarFile.value = file; // Store the file object for submission
+      };
+      reader.readAsDataURL(file);
+    };
+
+
+
+    const createUsers = async () => {
+      const formData = new FormData();
+      formState.loading = true;
+      const response = "";
+      try {
+
+        if (formState.name) {
+          formData.append("name", formState.name);
+        } else {
+          throw new Error("Store name is missing");
+        }
+
+        if (formState.address) {
+          formData.append("address", formState.address);
+        } else {
+          throw new Error("address is missing");
+        }
+
+        if (formState.phonenumber) {
+          formData.append("phonenumber", formState.phonenumber);
+        } else {
+          throw new Error("phonenumber is missing");
+        }
+
+        formData.append("storetypeid", formState.storeTypeId);
+
+
+        if (avatarFile.value) {
+          formData.append('image', avatarFile.value);
+        } else {
+          formData.append('image', formState.avatarProduct);
+        }
+
+        for (let pair of formData.entries()) {
+          console.log(pair[0] + ', ' + pair[1]);
+        }
+
+        const response = await axios.post(
+          `${apiPrefix}/api/v1/management/info/insert`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        message.success("Thêm thông tin thành công!");
+        formState.loading = false;
+        console.log(response.data.data)
+        console.log(response.data)
+
+        let auth = localStorage.getItem("auth");
+        if (auth) {
+          auth = JSON.parse(auth); // Chuyển đổi thành đối tượng JavaScript
+          auth.storeId = response.data.data.storeId; // Cập nhật storeId
+          localStorage.setItem("auth", JSON.stringify(auth)); // Lưu lại vào localStorage
+        }
+
+        window.location.href = '/dashboards';
+      } catch (error) {
+        console.error("Error during form submission:", error);
+        if (error.response && error.response.data && error.response.data.message) {
+          message.error("Có lỗi xảy ra: " + error.response.data.message);
+        } else {
+          message.error("Có lỗi xảy ra: " + error.message);
+        }
+      } finally {
+        formState.loading = false; // Tắt trạng thái chờ khi hoàn thành
+      }
+    };
+
+
+
+
+    const fileAvatar = ref(null);
+
     const handleFileUpload = (event) => {
       const file = event.target.files[0];
       this.formState.avatarFile = file; // Store the file object in formState
@@ -145,7 +274,6 @@ export default defineComponent({
         return Promise.resolve();
       }
     };
-    const rules = {};
     const layout = {
       labelCol: {
         span: 4,
@@ -194,39 +322,26 @@ export default defineComponent({
           console.log(error);
         });
     };
+    const goBack = () => {
+      // Navigate back to the previous page
+      if (history.length > 1) {
+        // If there's history available, go back
+        history.go(-1);
+      } else {
+        // Otherwise, fallback to home or another default route
+        this.$router.push("/");
+      }
+    };
+
     const filterOptionStatus = (input, option) => {
       return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
     };
     //
-    const createUsers = () => {
-      const formData = new FormData();
-      formData.append("address", formState.userName);
-      formData.append("phonenumber", formState.fullName);
-      formData.append("name", formState.email);
-      formData.append("avatar", formState.avatarFile);
-      console.log("formState");
-      console.log(formState, "formState");
-      //  http://localhost:9000/api/v1/management/store/1/insert
-      axios
-        .post(
-          "https://charismatic-friendship-production.up.railway.app/api/v1/management/store/1/insert",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
-        .then((response) => {
-          message.success("Tạo mới thành công!");
-          router.push({ name: "admin-users" });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
     onMounted(() => {
       //
+      fetchProduct();
+
+
       resetForm();
       getOptionsLevelManage();
       getOptionsStatus();
@@ -249,8 +364,11 @@ export default defineComponent({
     return {
       ...toRefs(users),
       authStoreClaim,
+      handleChange,
+      previewFiles,
       errors,
       formState,
+      storeTypes,
       fileAvatar,
       formRef,
       rules,
@@ -269,6 +387,8 @@ export default defineComponent({
       // preview
       handleChangeUpload,
       handleRemoveAvatar,
+      goBack
+
     };
   },
 });

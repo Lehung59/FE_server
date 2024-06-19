@@ -17,7 +17,7 @@
         >
           <router-link to="/trang-chu-stores">
             <a
-              title="Siêu thị đèn LED"
+              title="Siêu thị Agogo"
               itemprop="logo"
               itemscope=""
               itemtype="http://schema.org/ImageObject"
@@ -31,184 +31,12 @@
               />
             </a>
           </router-link>
-          <meta itemprop="url" content="https://denled.com" />
-          <meta itemprop="name" content="Siêu thị đèn LED" />
-          <meta
-            itemprop="description"
-            content="Siêu thị đèn LED chiếu sáng số 1 Việt Nam"
-          />
-          <meta
-            itemprop="disambiguatingDescription"
-            content="Chuyên phân phối các loại đèn LED chiếu sáng, trang trí chất lượng, chính hãng tại Hà Nội, Hồ Chí Minh. Đèn led âm trần, đèn ốp trần, đèn chùm, đèn tường"
-          />
-          <meta
-            itemprop="sameAs"
-            content="https://www.facebook.com/thegioidenledhanoii"
-          />
-          <meta
-            itemprop="sameAs"
-            content="https://g.page/Thegioidenledtranduyhung"
-          />
-          <meta
-            itemprop="sameAs"
-            content="https://goo.gl/maps/cmk6SUJRmpn1UXKS6"
-          />
-          <meta
-            itemprop="sameAs"
-            content="http://online.gov.vn/Home/WebDetails/85212"
-          />
-          <link
-            itemprop="additionalType"
-            href="https://en.wikipedia.org/wiki/LED_lamp"
-          />
-          <link
-            itemprop="additionalType"
-            href="https://vi.wikipedia.org/wiki/%C4%90%C3%A8n_LED"
-          />
-          <link
-            itemprop="additionalType"
-            href="https://en.wikipedia.org/wiki/Lighting"
-          />
-          <link
-            itemprop="additionalType"
-            href="https://en.wiktionary.org/wiki/store"
-          />
-          <meta itemprop="vatID" content="0105770373" />
-          <meta itemprop="email" content="denledminhhai@gmail.com" />
-
-          <span
-            itemprop="location"
-            itemscope=""
-            itemtype="https://schema.org/PostalAddress"
-          >
-            <meta itemprop="name" content="trụ sở chính" />
-            <meta
-              itemprop="streetAddress"
-              content="21C Trần Duy Hưng, Cầu Giấy, HN"
-            />
-            <meta itemprop="addressLocality" content="Cầu Giấy" />
-            <meta itemprop="addressRegion" content="Hà Nội" />
-            <span
-              itemprop="addressCountry"
-              itemscope=""
-              itemtype="https://schema.org/Country"
-            >
-              <meta itemprop="name" content="Việt Nam" />
-            </span>
-          </span>
-
-          <span
-            itemprop="location"
-            itemscope=""
-            itemtype="https://schema.org/PostalAddress"
-          >
-            <meta itemprop="name" content="SIÊU THỊ ĐÈN LED CẦU GIẤY" />
-            <meta itemprop="streetAddress" content="21C Trần Duy Hưng" />
-            <meta itemprop="addressLocality" content="Cầu Giấy" />
-            <meta itemprop="addressRegion" content="Hà Nội" />
-            <span
-              itemprop="addressCountry"
-              itemscope=""
-              itemtype="https://schema.org/Country"
-            >
-              <meta itemprop="name" content="Việt Nam" />
-            </span>
-          </span>
-
-          <span
-            itemprop="location"
-            itemscope=""
-            itemtype="https://schema.org/PostalAddress"
-          >
-            <meta itemprop="name" content="SIÊU THỊ ĐÈN LED ECOPARK" />
-            <meta itemprop="streetAddress" content="107 Thảo Nguyên" />
-            <meta itemprop="addressLocality" content="Ecopark" />
-            <meta itemprop="addressRegion" content="Hà Nội" />
-            <span
-              itemprop="addressCountry"
-              itemscope=""
-              itemtype="https://schema.org/Country"
-            >
-              <meta itemprop="name" content="Việt Nam" />
-            </span>
-          </span>
-
-          <span
-            itemprop="location"
-            itemscope=""
-            itemtype="https://schema.org/PostalAddress"
-          >
-            <meta itemprop="name" content="SIÊU THỊ ĐÈN LED QUẬN 2" />
-            <meta
-              itemprop="streetAddress"
-              content="148 Nguyễn Hoàng, P. AN Phú, Quận 2"
-            />
-            <meta itemprop="addressLocality" content="Quận 2" />
-            <meta itemprop="addressRegion" content="Hà Nội" />
-            <span
-              itemprop="addressCountry"
-              itemscope=""
-              itemtype="https://schema.org/Country"
-            >
-              <meta itemprop="name" content="Việt Nam" />
-            </span>
-          </span>
-
-          <span
-            itemprop="location"
-            itemscope=""
-            itemtype="https://schema.org/PostalAddress"
-          >
-            <meta itemprop="name" content="SIÊU THỊ ĐÈN LED PHÚ QUỐC" />
-            <meta
-              itemprop="streetAddress"
-              content="245 Đường 30/4, Dương Đông, Phú Quốc"
-            />
-            <meta itemprop="addressLocality" content="Phú Quốc" />
-            <meta itemprop="addressRegion" content="Kiên Giang" />
-            <span
-              itemprop="addressCountry"
-              itemscope=""
-              itemtype="https://schema.org/Country"
-            >
-              <meta itemprop="name" content="Việt Nam" />
-            </span>
-          </span>
-
-          <span
-            itemprop="contactPoint"
-            itemscope=""
-            itemtype="https://schema.org/ContactPoint"
-          >
-            <meta itemprop="email" content="denledminhhai@gmail.com" />
-            <meta itemprop="telephone" content="+84973665115" />
-            <meta itemprop="areaServed" content="VN" />
-          </span>
-          <span
-            itemprop="founder"
-            itemscope=""
-            itemtype="https://schema.org/Person"
-            itemid="/#founder"
-          >
-            <meta itemprop="name" content="Chu Thanh Phong" />
-            <meta itemprop="jobTitle" content="Co-Founder &amp; CEO" />
-            <meta itemprop="alternateName" content="Chu Thanh Phong" />
-            <meta itemprop="gender" content="https://schema.org/Male" />
-            <meta
-              itemprop="sameAs"
-              content="https://www.facebook.com/ChuThanhPhong"
-            />
-          </span>
 
           <div class="open">
             <label style="cursor: pointer" class="oh">
               <router-link v-if="!userLocal" to="/login">
                 <span> Đăng nhập </span>
               </router-link>
-              <router-link to="/profile-client" v-else class="me-1">
-                <span>Xin chào {{ userLocal.lastname }}</span>
-              </router-link>
-
               <router-link to="/profile-client" v-else class="me-1">
                 <span>Xin chào {{ userLocal.lastname }}</span>
               </router-link>
@@ -222,21 +50,14 @@
             <span style="font: bold 15px arial">Hãy cùng mua sắm nào!</span>
           </div>
           <div class="flexJus">
-            <router-link to="/frivStore">
-              <div class="vcart2">
-                <i class="fa-solid fa-store"></i>
-              </div>
-            </router-link>
-
             <router-link to="/trang-chu/gio-hang">
-              <div class="vcart2">
-                <i class="fa-solid fa-cart-shopping"></i>
-              </div>
-            </router-link>
-
-            <router-link to="/ordered">
-              <div class="vcart2">
-                <i class="fa-regular fa-rectangle-list"></i>
+              <div id="vcart">
+                <fieldset>
+                  <u>x</u>
+                  <figure>
+                    <p>Chưa có sản phẩm nào trong giỏ hàng !</p>
+                  </figure>
+                </fieldset>
               </div>
             </router-link>
           </div>
@@ -244,211 +65,83 @@
       </div>
       <input type="hidden" id="LocaCode" value="hn" />
     </div>
-
     <div id="main">
-      <!--san pham khuyen mai-->
-      <div class="f box-tit" id="headpro">
-        <div class="flexJus wrap" style="height: 40px">
-          <label @click="addMyFarvors()" class="btn" style="font: 15px arial"
-            >yêu thích</label
-          >
-          <div class="flexJus">
-            <ul
-              v-for="user in typeStore.productTypeName"
-              :key="user.id"
-              class="othpro flexL"
-            >
-              <li style="padding-right: 10px">
-                <label>{{ user }}</label>
-              </li>
-            </ul>
+      <div class="user-profile">
+        <div class="card" v-if="userData">
+          <div class="card-header">
+            <img :src="userData.avatar" alt="User Avatar" class="avatar" />
           </div>
-        </div>
-      </div>
-      <div class="f dealhot">
-        <div class="wrap flexCol">
-          <div class="f dhtit">
-            <h2>TOP sản phẩm trong cửa hàng</h2>
-          </div>
-          <div
-            class="dhpro owl-carousel owl-theme"
-            id="dealhot"
-            style="opacity: 1; display: block"
-          >
-            <div class="owl-wrapper-outer">
-              <div
-                class="owl-wrapper"
-                style="
-                  width: 3936px;
-                  left: 0px;
-                  display: block;
-                  background-color: #bfbfbf !important;
-                "
-              >
-                <div
-                  v-for="user in users.slice(0, 5)"
-                  :key="user.id"
-                  class="owl-item active"
-                  style="width: 256px; margin-left: 2px; height: 400px"
-                >
-                  <router-link
-                    :to="{
-                      name: 'trang-chu-chi-tiet-san-pham',
-                      params: { id: user.productId },
-                    }"
-                  >
-                    <!-- /trang-chu/chi-tiet-san-pham -->
-                    <a class="item pi" :title="user.title" :href="user.href">
-                      <div>
-                        <img
-                          :src="user.avatarProduct"
-                          :alt="user.avatarProduct"
-                        />
-                      </div>
-                      <h3>{{ user.productName }}</h3>
-                      <strong>
-                        {{
-                          (
-                            (user.price * (100 - user.discount)) /
-                            100
-                          )?.toLocaleString()
-                        }}₫
-                        <u>{{ user.price?.toLocaleString() }}₫</u>
-                      </strong>
-
-                      <span class="s s5">{{ user.view }}(Lượt xem)</span>
-                    </a>
-                  </router-link>
-                </div>
-              </div>
+          <div class="card-body">
+            <h2 class="user-name">
+              {{ userData.firstname }} {{ userData.lastname }}
+            </h2>
+            <div class="user-info">
+              <p><strong>Họ:</strong> {{ userData.firstname || "N/A" }}</p>
+              <p><strong>Tên:</strong> {{ userData.lastname || "N/A" }}</p>
+              <p>
+                <strong>Số điện thoại:</strong>
+                {{ userData.phoneNumber || "N/A" }}
+              </p>
+              <p>
+                <strong>Địa chỉ:</strong> {{ userData.phoneNumber || "N/A" }}
+              </p>
+              <p>
+                <strong>Mạng xã hội:</strong>
+                {{ userData.socialContact || "N/A" }}
+              </p>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="wrap flexCol">
-        <div class="f boxtit flexJus">
-          <label>Các sản phẩm khác</label>
-          <div class="bst">
-            <h2>
-              <a href="den-led-am-tran" title="Đèn Led âm trần"
-                >Đèn Led âm trần</a
-              >
-            </h2>
-
-            <h2><a href="den-ban" title="Đèn bàn">Đèn bàn</a></h2>
-
-            <h2>
-              <a href="den-led-thanh" title="Đèn led thanh">Đèn led thanh</a>
-            </h2>
-
-            <h2>
-              <a href="den-led-tuyp" title="Đèn Tuýp Led">Đèn Tuýp Led</a>
-            </h2>
-
-            <h2><a href="den-led-day" title="Đèn LED Dây">Đèn LED Dây</a></h2>
+          <div class="card-footer">
+            <button @click="showModal" class="edit-button">Chỉnh sửa</button>
           </div>
         </div>
-        <div
-          style="
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 10px;
-            background-color: #eee !important;
-          "
+        <div v-else class="loading">Loading...</div>
+
+        <a-modal
+          v-model:visible="isModalVisible"
+          title="Chỉnh sửa thông tin"
+          @ok="handleOk"
+          @cancel="handleCancel"
         >
-          <ul
-            v-for="user in users.slice(0, 8)"
-            :key="user.id"
-            class="pb Product"
-          >
-            <li style="width: 100% !important" class="pi">
-              <router-link
-                :to="{
-                  name: 'trang-chu-chi-tiet-san-pham',
-                  params: { id: user.productId },
-                }"
-              >
-                <a :title="user.title">
-                  <div data-l="kaadas">
-                    <img :src="user.avatarProduct" :alt="user.avatarProduct" />
-                  </div>
-                  <h3>{{ user.productName }}</h3>
-                  <strong>
-                    {{
-                      (
-                        (user.price * (100 - user.discount)) /
-                        100
-                      )?.toLocaleString()
-                    }}₫
-                    <u>{{ user.price?.toLocaleString() }}₫</u>
-                  </strong>
-                  <span class="s s5">{{ user.view }}(Lượt xem)</span>
-                </a>
-              </router-link>
-            </li>
-          </ul>
-        </div>
+          <a-form :form="form" layout="vertical">
+            <a-form-item label="Họ">
+              <a-input
+                v-model:value="formData.firstname"
+                @input="handleInputChange('firstname', $event)"
+              />
+            </a-form-item>
+            <a-form-item label="Tên">
+              <a-input
+                v-model:value="formData.lastname"
+                @input="handleInputChange('lastname', $event)"
+              />
+            </a-form-item>
+            <a-form-item label="Số điện thoại">
+              <a-input
+                v-model:value="formData.phoneNumber"
+                @input="handleInputChange('phoneNumber', $event)"
+              />
+            </a-form-item>
+            <a-form-item label="Địa chỉ">
+    <div class="css_select_div">
+      <select class="css_select" v-model="selectedProvince" @change="fetchDistricts" title="Chọn Tỉnh Thành">
+        <option value="0">Tỉnh Thành</option>
+        <option v-for="province in provinces" :key="province.id" :value="province.id">{{ province.full_name }}</option>
+      </select>
+      <select class="css_select" v-model="selectedDistrict" @change="fetchWards" title="Chọn Quận Huyện">
+        <option value="0">Quận Huyện</option>
+        <option v-for="district in districts" :key="district.id" :value="district.id">{{ district.full_name }}</option>
+      </select>
+      <select class="css_select" v-model="selectedWard" @change="updateAddress" title="Chọn Phường Xã">
+        <option value="0">Phường Xã</option>
+        <option v-for="ward in wards" :key="ward.id" :value="ward.id">{{ ward.full_name }}</option>
+      </select>
+      <input type="text" v-model="houseNumber" @input="updateAddress" placeholder="Số nhà" />
+    </div>
+  </a-form-item>
+          </a-form>
+        </a-modal>
       </div>
-
-      <!--bai viet-->
-      <!--dichvu-->
-      <div class="f dichvu">
-        <ul class="wrap">
-          <li>
-            <i
-              ><img
-                src="https://denled.com/Content/img/Home/hoi.png"
-                title="Hỏi chúng tôi"
-            /></i>
-            <span>Hỏi chúng tôi</span>
-            <p>
-              Nếu bạn không chắc chắn về những thiết bị nào phù hợp với bạn và
-              nhà của bạn, chỉ cần liên hệ với chúng tôi và để được nhóm hỗ trợ
-              khách hàng trực tuyến của chúng tôi đưa ra đề xuất cho bạn.
-            </p>
-          </li>
-          <li>
-            <i
-              ><img
-                src="https://denled.com/Content/img/Home/tim.png"
-                title="Hỏi chúng tôi"
-            /></i>
-            <span>Tìm sản phẩm</span>
-            <p>
-              Với nhiều sản phẩm để lựa chọn, đây là một nơi tuyệt vời để bắt
-              đầu dự án của bạn.
-            </p>
-          </li>
-          <li>
-            <i
-              ><img
-                src="https://denled.com/Content/img/Home/loca.png"
-                title="Hỏi chúng tôi"
-            /></i>
-            <span>Ghé thăm cửa hàng</span>
-            <p>
-              Chào mừng bạn đến với các cửa hàng đèn led hàng đầu Việt Nam -
-              trưng bày đầy đủ các thiết bị đèn, quạt, điện thông minh.
-            </p>
-          </li>
-          <li>
-            <i
-              ><img
-                src="https://denled.com/Content/img/Home/dichvu.png"
-                title="Hỏi chúng tôi"
-            /></i>
-            <span>Dịch vụ của chúng tôi</span>
-            <p>
-              Dịch vụ khách hàng là nền tảng trong hoạt động kinh doanh của
-              chúng tôi và chúng tôi nỗ lực hết sức để cung cấp trải nghiệm
-              tuyệt đối tốt nhất cho khách hàng.
-            </p>
-          </li>
-        </ul>
-      </div>
-
-      <!--thuong hieu-->
     </div>
     <div id="footer">
       <div class="f" style="padding: 40px 0">
@@ -514,6 +207,7 @@
         © 2024 bản quyền thuộc về HungNL@gmail.com
         <a href="https://denled.com" title="Siêu thị đèn LED">denled.com</a>
       </div>
+
       <ul id="panel">
         <li>
           <img
@@ -553,7 +247,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { defineComponent, ref, reactive } from "vue";
 import { useRouter } from "vue-router";
@@ -565,85 +258,310 @@ import ApiViewData from "../../api/ApiViewData.js";
 import ApiUser from "../../api/ApiUser.js";
 import { useAuthStore } from "../../stores/auth.store.js";
 import axios from "axios";
+import ProfileUser from "./profileUser.vue";
+
 export default defineComponent({
   setup() {
     useMenu().onSelectedKeys(["admin-users"]);
     const userLocal = JSON.parse(localStorage.getItem("auth"));
+    const token = JSON.parse(localStorage.getItem("token"));
+    console.log(token);
     const apiPrefix = import.meta.env.VITE_API_PREFIX;
-    const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
     const router = useRouter();
     const route = useRoute();
     const errors = ref([]);
-    const users = ref([]);
-    const typeStore = ref([]);
-    const token = JSON.parse(localStorage.getItem("token"));
-    const storeId = route.params.id;
-    const storeId2 = ref(route.params.id);
-    const getUsers = () => {
-      axios
-        .get(`${apiPrefix}/api/v1/customer/store/view/${storeId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          users.value = response.data.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+    const stores = ref([]);
+    const allStores = ref([]);
+    const userData = ref(null);
+    const isModalVisible = ref(false);
+    const form = ref(null);
+    const formData = ref({
+      firstname: "",
+      lastname: "",
+      phoneNumber: "",
+      address: "",
+    });
+    const handleInputChange = (fieldName, event) => {
+      formData[fieldName] = event.target.value;
     };
-    const addMyFarvors = async () => {
-      const formData = new FormData();
-      formData.append("storeid", storeId);
+
+    const provinces = ref([]);
+    const districts = ref([]);
+    const wards = ref([]);
+    const selectedProvince = ref('0');
+    const selectedDistrict = ref('0');
+    const selectedWard = ref('0');
+    const houseNumber = ref('');
+
+    const fetchProvinces = async () => {
       try {
-        await axios.post(`${apiPrefix}/api/v1/customer/favor/add`, formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        message.success("đã thêm yêu thích");
+        const response = await axios.get("https://esgoo.net/api-tinhthanh/1/0.htm");
+        if (response.data.error === 0) {
+          provinces.value = response.data.data;
+        }
       } catch (error) {
         console.error(error);
       }
     };
-    const getTypeStore = () => {
+
+    const fetchDistricts = async () => {
+      if (selectedProvince.value !== '0') {
+        try {
+          const response = await axios.get(`https://esgoo.net/api-tinhthanh/2/${selectedProvince.value}.htm`);
+          if (response.data.error === 0) {
+            districts.value = response.data.data;
+            wards.value = [];
+            selectedDistrict.value = '0';
+            selectedWard.value = '0';
+            updateAddress();
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    const fetchWards = async () => {
+      if (selectedDistrict.value !== '0') {
+        try {
+          const response = await axios.get(`https://esgoo.net/api-tinhthanh/3/${selectedDistrict.value}.htm`);
+          if (response.data.error === 0) {
+            wards.value = response.data.data;
+            selectedWard.value = '0';
+            updateAddress();
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    const updateAddress = () => {
+      const provinceName = provinces.value.find(p => p.id === selectedProvince.value)?.full_name || '';
+      const districtName = districts.value.find(d => d.id === selectedDistrict.value)?.full_name || '';
+      const wardName = wards.value.find(w => w.id === selectedWard.value)?.full_name || '';
+      formData.value.address = `${houseNumber.value} ${wardName} ${districtName} ${provinceName}`.trim();
+    };
+
+    const getUserData = async () => {
+      try {
+        const token = JSON.parse(localStorage.getItem("token")); // Lấy token từ localStorage
+        const response = await axios.get(
+          `${apiPrefix}/api/v1/account/profile/view`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Thêm token vào headers
+            },
+          }
+        );
+        userData.value = response.data.data;
+        formData.value = { ...response.data.data }; // Sao chép dữ liệu người dùng vào formData
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const showModal = () => {
+      isModalVisible.value = true;
+    };
+
+    const handleOk = async () => {
+      try {
+        const token = JSON.parse(localStorage.getItem("token"));
+        const formData2 = new FormData();
+        console.log(formData.value.firstname, "cc");
+        formData2.append("firstname", formData.value.firstname);
+        formData2.append("lastname", formData.value.lastname);
+        formData2.append("phoneNumber", formData.value.phoneNumber);
+        formData2.append("address", formData.value.address);
+
+        await axios.put(
+          `${apiPrefix}/api/v1/account/profile/update`,
+          formData2,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        message.success("Cập nhật thông tin thành công");
+        isModalVisible.value = false;
+        getUserData(); // Tải lại dữ liệu sau khi cập nhật thành công
+      } catch (error) {
+        console.error(error);
+        message.error("Có lỗi xảy ra khi cập nhật thông tin");
+      }
+    };
+
+    const handleCancel = () => {
+      isModalVisible.value = false;
+    };
+
+    const getAllStores = () => {
       axios
-        .get(`${apiPrefix}/api/v1/customer/${storeId}/info/view`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get(
+           `${apiPrefix}/api/v1/admin/store/view`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Thêm token vào headers
+            },
+          }
+        )
         .then((response) => {
-          console.log(response.data.data);
-          typeStore.value = response.data.data;
-          console.log(typeStore.value.productTypeName);
+          console.log(response.data.data, "response");
+          allStores.value = response.data.data;
         })
         .catch((error) => {
           console.error(error);
         });
     };
-    console.log(typeStore.value.productTypeName, "cs");
-    onMounted(() => {
-      getUsers();
-      getTypeStore();
-    });
 
+    const getUsers = () => {
+      axios
+        .get(
+           `${apiPrefix}/api/v1/customer/favor/view`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Thêm token vào headers
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data.data, "response");
+          stores.value = response.data.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+    onMounted(() => {
+      getAllStores();
+      getUserData();
+
+      getUsers();
+      if (!token) {
+        // Xóa localStorage
+        localStorage.removeItem("token");
+        localStorage.removeItem("auth");
+        // Redirect đến trang login
+        router.push("/login");
+      }
+    });
     return {
       route,
       router,
-      users,
-      storeId2,
+      allStores,
+      stores,
       userLocal,
-      typeStore,
-      addMyFarvors,
+      userData,
+      isModalVisible,
+      form,
+      formData,
+      showModal,
+      handleOk,
+      handleCancel,
+      handleInputChange,
     };
-    //
   },
 });
 </script>
 
 <style scoped>
+.user-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  background-color: #f0f2f5;
+  font-family: "Roboto", sans-serif;
+}
+.ant-input {
+  /* Example styles */
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Optional: Specific styling for input labels */
+.ant-form-item-label {
+  font-weight: bold;
+}
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  text-align: center;
+}
+
+.card-header {
+  background: #007bff;
+  padding: 16px;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 4px solid #fff;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.user-name {
+  font-size: 1.5rem;
+  margin: 16px 0;
+  color: #333;
+}
+
+.user-info {
+  text-align: left;
+  padding: 0 16px;
+}
+
+.user-info p {
+  margin: 8px 0;
+  color: #555;
+}
+
+.user-info strong {
+  color: #333;
+}
+
+.card-footer {
+  padding: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.edit-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.loading {
+  font-size: 1.5rem;
+  color: #007bff;
+}
 #panel {
   position: fixed;
   z-index: 999;
@@ -1384,207 +1302,6 @@ a:focus {
   text-decoration: underline;
 }
 
-.sapobanner {
-  position: relative;
-}
-
-.sapobanner figure {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.sapobanner .sapold {
-  padding: 20px 50px;
-  margin: 0 auto;
-  max-width: 800px;
-  border-radius: 15px;
-  font-size: 18px;
-}
-
-.sapobanner h1 {
-  font: bold 42px/35px arial;
-  margin-bottom: 15px;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
-.sapobanner {
-  font-size: 14px;
-  text-align: justify;
-}
-
-.sapobanner a {
-  color: #eee;
-}
-
-.sapobanner h3 {
-  text-align: center;
-  display: block;
-  font: bold 15px arial;
-  margin: 10px 0;
-}
-
-.sapobanner img {
-  display: block;
-  margin: 0 auto;
-  width: auto;
-  height: auto;
-}
-
-.sapobanner .beadcrum a {
-  color: orange;
-}
-
-.sapobanner .beadcrum span {
-  font-size: 13px;
-}
-
-/*thuoc tinh*/
-.property {
-  background: #f8f8f8;
-  padding: 0 0 20px;
-}
-
-.prol {
-  width: 60%;
-}
-
-.pror {
-  width: 40%;
-}
-
-.prol img {
-}
-
-.propertyhead label {
-  font: bold 18px/60px arial;
-  display: inline-block;
-}
-
-.propertyhead label:nth-child(1) {
-  width: 60%;
-}
-
-.propertyhead label:nth-child(2) {
-  width: 40%;
-}
-
-.pl {
-  height: 280px;
-}
-
-.prol figure a {
-  margin-right: 2%;
-  float: left;
-  width: 100%;
-  text-align: center;
-}
-
-.prol figure a span {
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 214px;
-  padding: 5px;
-}
-
-.plnoslide figure a span {
-  width: 130px;
-}
-
-.prol figure a h2 {
-  font: 14px arial;
-  margin-top: 10px;
-}
-
-.hang {
-  width: 100%;
-  overflow-y: auto;
-  text-align: center;
-}
-
-.hang h2 {
-  float: left;
-  margin: 5px;
-  font: 14px/35px arial;
-  padding: 0 10px;
-  border-radius: 10px;
-  background: #000;
-  color: orange;
-}
-
-.cur {
-  border-color: orange !important;
-}
-
-.othpro {
-  margin-left: 20px;
-}
-
-.othpro label {
-  font: 13px/33px arial;
-  color: #000;
-}
-
-.othpro div {
-  display: none;
-  position: absolute;
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 10px 15px;
-  min-width: 310px;
-  z-index: 1;
-}
-
-.othpro li {
-  position: relative;
-  background: #ffd52f;
-  margin-right: 5px;
-  border-radius: 5px;
-}
-
-.othpro li:hover > div {
-  display: block;
-}
-
-.othpro div a {
-  width: 100%;
-  float: left;
-  font: 13px/30px arial;
-  color: #555;
-  cursor: pointer;
-}
-
-.othpro div a h2 {
-  font: 13px/30px arial;
-  color: #555;
-  margin: 0;
-  display: inline-block;
-}
-
-.othpro div a:before,
-.prol h2:before {
-  font: 14px/1px FontAwesome;
-  margin-right: 5px;
-  color: #999;
-}
-
-.on:before,
-.plon h2:before {
-  content: "\f192" !important;
-}
-
-.othpro div a:before,
-.ploff h2:before {
-  content: "\f10c";
-}
-
 /*box-tit*/
 .box-tit {
   height: 40px;
@@ -2001,18 +1718,6 @@ textarea {
   color: #ea9b40 !important;
 }
 
-.vcart2:before {
-  font: 21px/1 FontAwesome;
-  padding-right: 2px;
-}
-
-.vcart2 {
-  color: #000;
-  padding-left: 14px;
-  cursor: pointer;
-  position: relative;
-  font-size: 18px;
-}
 .nav li {
   position: static;
 }
@@ -2898,15 +2603,13 @@ body {
 
 .pi {
   width: 19%;
-  height: 350px;
+  height: 510px;
   float: left;
   padding: 10px;
   position: relative;
   margin: 0.5%;
   background: #fff;
   color: #333;
-  border-radius: 5%;
-  border: 1px solid #333;
 }
 
 .pi a {
@@ -3139,6 +2842,11 @@ body {
   margin-bottom: 30px;
 }
 
+.dealhot2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 .dhtit {
   padding: 13px 0 8px;
   background: #bf2121;
@@ -3167,11 +2875,25 @@ body {
   width: auto !important;
 }
 
+.dealhot2 a {
+  padding: 10px;
+  color: #333;
+  width: auto !important;
+}
+
 .dealhot a div {
   height: 240px;
 }
 
+.dealhot2 a div {
+  height: 240px;
+}
+
 .dealhot a h3 {
+  font-size: 15px;
+}
+
+.dealhot2 a h3 {
   font-size: 15px;
 }
 
@@ -3181,7 +2903,17 @@ body {
   margin: 0 auto;
 }
 
+.dealhot2 figure img {
+  width: auto !important;
+  clear: both;
+  margin: 0 auto;
+}
+
 .dealhot .bq u {
+  font: 13px/14px arial;
+}
+
+.dealhot2 .bq u {
   font: 13px/14px arial;
 }
 
@@ -3268,5 +3000,10 @@ body {
   overflow: hidden;
   float: left;
   width: 100%;
+}
+
+.owl-wrapper {
+  background-color: #bfbfbf;
+  padding: 15px 10px;
 }
 </style>

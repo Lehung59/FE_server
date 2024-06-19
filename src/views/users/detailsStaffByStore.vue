@@ -20,6 +20,20 @@
         </a-button>
       </div>
     </div>
+    <div class="row mb-3">
+      <div class="col-12">
+        <a-form @submit.prevent="onSearch">
+          <a-form-item>
+            <a-input
+              placeholder="Tìm kiếm sản phẩm"
+              v-model:value="searchKeyword"
+              @pressEnter="onSearch"
+            />
+          </a-form-item>
+          <a-button type="primary" @click="onSearch">Tìm kiếm</a-button>
+        </a-form>
+      </div>
+    </div>
     <!-- <div class="row">
             <div class="col-12">
                 <a-form @keyup.enter="clickFrmFilter($event)" layout="inline" class="p-3 border">
@@ -71,7 +85,7 @@
 
             <template v-if="column.key === 'action' && authStoreClaim !== null">
               <!-- <a-space warp>
-               
+
                 <a-button
                   type="dashed"
                   class="me-2 text-primary"
@@ -104,13 +118,18 @@
                 </router-link>
               </a-popconfirm> -->
               <router-link
-                  :to="{
-                    name: 'order-by-user',
-                    params: { id: record.storeId },
-                  }"
+                :to="{
+                  name: 'order-by-user',
+                  params: { id: record.storeId, customerId: record.customerId },
+                }"
+              >
+                <a-button
+                  title="Xóa"
+                  type="dashed"
+                  size="small"
+                  shape=""
+                  danger
                 >
-                <a-button title="Xóa" type="dashed" size="small" shape="" danger
-                  >
                   Xem đơn đã mua
                 </a-button>
               </router-link>
@@ -143,11 +162,11 @@
         <div class="col-12">
           <a-pagination
             @change="onChange"
-            v-model:current="pageParam.current"
-            :total="pageParam.totalRecord"
+            v-model:current="pageParam.currentPage"
+            :total="pageParam.totalItems"
             :pageSize="pageParam.pageSize"
             :show-total="
-              (total, range) => `${range[0]}-${range[1]} of ${total} items`
+              (total, range) => `${range[0]}-${range[1]} của ${total} sản phẩm`
             "
             class="mt-2 text-end"
           />
@@ -170,20 +189,19 @@ import axios from "axios";
 export default defineComponent({
   setup() {
     useMenu().onSelectedKeys(["admin-users"]);
+    const apiPrefix = import.meta.env.VITE_API_PREFIX;
     const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
     const router = useRouter();
     const route = useRoute();
     const id = route.params.id;
     const errors = ref([]);
     const users = ref([]);
+    const searchKeyword = ref("");
     const pageParam = reactive({
-      current: Object.keys(route.query).length > 0 ? route.query.PageNumber : 1,
-      pageNumber:
-        Object.keys(route.query).length > 0 ? route.query.PageNumber : 1,
-      pageSize: Object.keys(route.query).length > 0 ? route.query.PageSize : 10,
-      totalRecord: 0,
-      userName: Object.keys(route.query).length > 0 ? route.query.UserName : "",
-      statusFilter: false,
+      currentPage: 1,
+      pageSize: 1,
+      totalItems: 0,
+      totalPages: 0,
     });
     const columns = [
       {
@@ -211,43 +229,34 @@ export default defineComponent({
         fixed: "right",
       },
     ];
+    const token = JSON.parse(localStorage.getItem("token"));
 
-    const getUsers = (args) => {
+    const getUsers = (page, size, keyword = "") => {
       axios
-        .get(
-          `https://charismatic-friendship-production.up.railway.app/api/v1/management/${id}/customer/view`
-        )
+        .get(`${apiPrefix}/api/v1/management/${id}/customer/view`, {
+          headers: { Authorization: `Bearer ${token}` },
+          params: { page, size, keyword },
+        })
         .then((response) => {
           console.log(response.data.data, "response");
+          const data = response.data;
+
           users.value = response.data.data;
+          pageParam.totalItems = data.pagination.totalItems;
+          pageParam.totalPages = data.pagination.totalPages;
         })
         .catch((error) => {
           console.error(error);
         });
-      // ApiUser.GetAllByLimit(args).then((response) => {
-      //     // // list ban ghi
-
-      //     // tham so
-      //     pageParam.current = response.data.pageNumber;
-      //     pageParam.pageNumber = response.data.pageNumber;
-      //     pageParam.pageSize = response.data.pageSize;
-      //     pageParam.totalRecord = response.data.totalRecords;
-      //     //
-      //     pageParam.userName = args.userName;
-      //     if (pageParam.statusFilter) {
-      //         if (response.data.totalPages < response.data.pageNumber && response.data.totalRecords > 0) {
-      //             pageParam.current = 1;
-      //             pageParam.pageNumber = 1;
-      //             getUsers(pageParam);
-      //             router.push({ name: "admin-users", query: { PageNumber: 1, PageSize: pageParam.pageSize, UserName: pageParam.userName } })
-      //         } else {
-      //             router.push({ name: "admin-users", query: { PageNumber: pageParam.pageNumber, PageSize: pageParam.pageSize, UserName: pageParam.userName } })
-      //         }
-      //     }
-      //     //
-      // }).catch((error) => {
-      //     message.error(`Lỗi! ${error.response.statusText}`);
-      // });
+    };
+    const onChange = (page, pageSize) => {
+      pageParam.currentPage = page;
+      pageParam.pageSize = pageSize;
+      getUsers(page, pageSize, searchKeyword.value);
+    };
+    const onSearch = () => {
+      pageParam.currentPage = 1;
+      getUsers(pageParam.currentPage, pageParam.pageSize, searchKeyword.value);
     };
     const confirmRemove = (id) => {
       ApiUser.DeleteById(id)
@@ -288,33 +297,27 @@ export default defineComponent({
         });
     };
     //
-    onUpdated(() => {
-      //
-      if (Object.keys(route.query).length === 0) {
-        pageParam.current =
-          Object.keys(route.query).length > 0 ? route.query.PageNumber : 1;
-        pageParam.pageNumber =
-          Object.keys(route.query).length > 0 ? route.query.PageNumber : 1;
-        pageParam.pageSize =
-          Object.keys(route.query).length > 0 ? route.query.PageSize : 10;
-        pageParam.userName =
-          Object.keys(route.query).length > 0 ? route.query.UserName : "";
-        pageParam.statusFilter = true;
-        getUsers(pageParam);
-      }
-    });
+    // onUpdated(() => {
+    //   //
+    //   if (Object.keys(route.query).length === 0) {
+    //     pageParam.current =
+    //       Object.keys(route.query).length > 0 ? route.query.PageNumber : 1;
+    //     pageParam.pageNumber =
+    //       Object.keys(route.query).length > 0 ? route.query.PageNumber : 1;
+    //     pageParam.pageSize =
+    //       Object.keys(route.query).length > 0 ? route.query.PageSize : 10;
+    //     pageParam.userName =
+    //       Object.keys(route.query).length > 0 ? route.query.UserName : "";
+    //     pageParam.statusFilter = true;
+    //     getUsers(pageParam);
+    //   }
+    // });
     onMounted(() => {
       // chay lan dau tien
-      getUsers(pageParam);
+      getUsers(pageParam.currentPage, pageParam.pageSize);
     });
     //
-    function onChange(page, pageSize) {
-      pageParam.pageNumber = page;
-      pageParam.pageSize = pageSize;
-      //
-      pageParam.statusFilter = true;
-      getUsers(pageParam);
-    }
+
     //
     const clickFrmFilter = (event) => {
       pageParam.statusFilter = true;
@@ -333,6 +336,8 @@ export default defineComponent({
       clickFrmFilter,
       confirmRemove,
       confirmBanned,
+      searchKeyword,
+      onSearch,
     };
     //
   },

@@ -17,7 +17,7 @@
         >
           <router-link to="/trang-chu-stores">
             <a
-              title="Siêu thị đèn LED"
+              title="Siêu thị Agogo"
               itemprop="logo"
               itemscope=""
               itemtype="http://schema.org/ImageObject"
@@ -31,184 +31,12 @@
               />
             </a>
           </router-link>
-          <meta itemprop="url" content="https://denled.com" />
-          <meta itemprop="name" content="Siêu thị đèn LED" />
-          <meta
-            itemprop="description"
-            content="Siêu thị đèn LED chiếu sáng số 1 Việt Nam"
-          />
-          <meta
-            itemprop="disambiguatingDescription"
-            content="Chuyên phân phối các loại đèn LED chiếu sáng, trang trí chất lượng, chính hãng tại Hà Nội, Hồ Chí Minh. Đèn led âm trần, đèn ốp trần, đèn chùm, đèn tường"
-          />
-          <meta
-            itemprop="sameAs"
-            content="https://www.facebook.com/thegioidenledhanoii"
-          />
-          <meta
-            itemprop="sameAs"
-            content="https://g.page/Thegioidenledtranduyhung"
-          />
-          <meta
-            itemprop="sameAs"
-            content="https://goo.gl/maps/cmk6SUJRmpn1UXKS6"
-          />
-          <meta
-            itemprop="sameAs"
-            content="http://online.gov.vn/Home/WebDetails/85212"
-          />
-          <link
-            itemprop="additionalType"
-            href="https://en.wikipedia.org/wiki/LED_lamp"
-          />
-          <link
-            itemprop="additionalType"
-            href="https://vi.wikipedia.org/wiki/%C4%90%C3%A8n_LED"
-          />
-          <link
-            itemprop="additionalType"
-            href="https://en.wikipedia.org/wiki/Lighting"
-          />
-          <link
-            itemprop="additionalType"
-            href="https://en.wiktionary.org/wiki/store"
-          />
-          <meta itemprop="vatID" content="0105770373" />
-          <meta itemprop="email" content="denledminhhai@gmail.com" />
-
-          <span
-            itemprop="location"
-            itemscope=""
-            itemtype="https://schema.org/PostalAddress"
-          >
-            <meta itemprop="name" content="trụ sở chính" />
-            <meta
-              itemprop="streetAddress"
-              content="21C Trần Duy Hưng, Cầu Giấy, HN"
-            />
-            <meta itemprop="addressLocality" content="Cầu Giấy" />
-            <meta itemprop="addressRegion" content="Hà Nội" />
-            <span
-              itemprop="addressCountry"
-              itemscope=""
-              itemtype="https://schema.org/Country"
-            >
-              <meta itemprop="name" content="Việt Nam" />
-            </span>
-          </span>
-
-          <span
-            itemprop="location"
-            itemscope=""
-            itemtype="https://schema.org/PostalAddress"
-          >
-            <meta itemprop="name" content="SIÊU THỊ ĐÈN LED CẦU GIẤY" />
-            <meta itemprop="streetAddress" content="21C Trần Duy Hưng" />
-            <meta itemprop="addressLocality" content="Cầu Giấy" />
-            <meta itemprop="addressRegion" content="Hà Nội" />
-            <span
-              itemprop="addressCountry"
-              itemscope=""
-              itemtype="https://schema.org/Country"
-            >
-              <meta itemprop="name" content="Việt Nam" />
-            </span>
-          </span>
-
-          <span
-            itemprop="location"
-            itemscope=""
-            itemtype="https://schema.org/PostalAddress"
-          >
-            <meta itemprop="name" content="SIÊU THỊ ĐÈN LED ECOPARK" />
-            <meta itemprop="streetAddress" content="107 Thảo Nguyên" />
-            <meta itemprop="addressLocality" content="Ecopark" />
-            <meta itemprop="addressRegion" content="Hà Nội" />
-            <span
-              itemprop="addressCountry"
-              itemscope=""
-              itemtype="https://schema.org/Country"
-            >
-              <meta itemprop="name" content="Việt Nam" />
-            </span>
-          </span>
-
-          <span
-            itemprop="location"
-            itemscope=""
-            itemtype="https://schema.org/PostalAddress"
-          >
-            <meta itemprop="name" content="SIÊU THỊ ĐÈN LED QUẬN 2" />
-            <meta
-              itemprop="streetAddress"
-              content="148 Nguyễn Hoàng, P. AN Phú, Quận 2"
-            />
-            <meta itemprop="addressLocality" content="Quận 2" />
-            <meta itemprop="addressRegion" content="Hà Nội" />
-            <span
-              itemprop="addressCountry"
-              itemscope=""
-              itemtype="https://schema.org/Country"
-            >
-              <meta itemprop="name" content="Việt Nam" />
-            </span>
-          </span>
-
-          <span
-            itemprop="location"
-            itemscope=""
-            itemtype="https://schema.org/PostalAddress"
-          >
-            <meta itemprop="name" content="SIÊU THỊ ĐÈN LED PHÚ QUỐC" />
-            <meta
-              itemprop="streetAddress"
-              content="245 Đường 30/4, Dương Đông, Phú Quốc"
-            />
-            <meta itemprop="addressLocality" content="Phú Quốc" />
-            <meta itemprop="addressRegion" content="Kiên Giang" />
-            <span
-              itemprop="addressCountry"
-              itemscope=""
-              itemtype="https://schema.org/Country"
-            >
-              <meta itemprop="name" content="Việt Nam" />
-            </span>
-          </span>
-
-          <span
-            itemprop="contactPoint"
-            itemscope=""
-            itemtype="https://schema.org/ContactPoint"
-          >
-            <meta itemprop="email" content="denledminhhai@gmail.com" />
-            <meta itemprop="telephone" content="+84973665115" />
-            <meta itemprop="areaServed" content="VN" />
-          </span>
-          <span
-            itemprop="founder"
-            itemscope=""
-            itemtype="https://schema.org/Person"
-            itemid="/#founder"
-          >
-            <meta itemprop="name" content="Chu Thanh Phong" />
-            <meta itemprop="jobTitle" content="Co-Founder &amp; CEO" />
-            <meta itemprop="alternateName" content="Chu Thanh Phong" />
-            <meta itemprop="gender" content="https://schema.org/Male" />
-            <meta
-              itemprop="sameAs"
-              content="https://www.facebook.com/ChuThanhPhong"
-            />
-          </span>
 
           <div class="open">
             <label style="cursor: pointer" class="oh">
               <router-link v-if="!userLocal" to="/login">
                 <span> Đăng nhập </span>
               </router-link>
-              <router-link to="/profile-client" v-else class="me-1">
-                <span>Xin chào {{ userLocal.lastname }}</span>
-              </router-link>
-
               <router-link to="/profile-client" v-else class="me-1">
                 <span>Xin chào {{ userLocal.lastname }}</span>
               </router-link>
@@ -247,28 +75,10 @@
 
     <div id="main">
       <!--san pham khuyen mai-->
-      <div class="f box-tit" id="headpro">
-        <div class="flexJus wrap" style="height: 40px">
-          <label @click="addMyFarvors()" class="btn" style="font: 15px arial"
-            >yêu thích</label
-          >
-          <div class="flexJus">
-            <ul
-              v-for="user in typeStore.productTypeName"
-              :key="user.id"
-              class="othpro flexL"
-            >
-              <li style="padding-right: 10px">
-                <label>{{ user }}</label>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
       <div class="f dealhot">
         <div class="wrap flexCol">
           <div class="f dhtit">
-            <h2>TOP sản phẩm trong cửa hàng</h2>
+            <h2>Danh sách cửa hàng yêu thích của bạn</h2>
           </div>
           <div
             class="dhpro owl-carousel owl-theme"
@@ -276,47 +86,99 @@
             style="opacity: 1; display: block"
           >
             <div class="owl-wrapper-outer">
-              <div
-                class="owl-wrapper"
-                style="
-                  width: 3936px;
-                  left: 0px;
-                  display: block;
-                  background-color: #bfbfbf !important;
-                "
-              >
+              <div class="owl-wrapper">
                 <div
-                  v-for="user in users.slice(0, 5)"
-                  :key="user.id"
+                  v-for="store in stores.slice(0, 5)"
+                  :key="store.storeId"
                   class="owl-item active"
-                  style="width: 256px; margin-left: 2px; height: 400px"
+                  style=""
                 >
                   <router-link
                     :to="{
-                      name: 'trang-chu-chi-tiet-san-pham',
-                      params: { id: user.productId },
+                      name: 'trang-chu',
+                      params: { id: store.storeId },
                     }"
                   >
-                    <!-- /trang-chu/chi-tiet-san-pham -->
-                    <a class="item pi" :title="user.title" :href="user.href">
+                    <a style="height: 344px !important" class="item pi">
                       <div>
-                        <img
-                          :src="user.avatarProduct"
-                          :alt="user.avatarProduct"
-                        />
+                        <img :src="store.image" :alt="store.image" />
                       </div>
-                      <h3>{{ user.productName }}</h3>
-                      <strong>
-                        {{
-                          (
-                            (user.price * (100 - user.discount)) /
-                            100
-                          )?.toLocaleString()
-                        }}₫
-                        <u>{{ user.price?.toLocaleString() }}₫</u>
-                      </strong>
+                      <h3>{{ store.storeName }}</h3>
+                      <strong style="padding-right: 5px">{{
+                        store.rate
+                      }}</strong>
+                      <i
+                        class="fa-solid fa-star"
+                        style="color: #ffd43b; padding-right: 5px"
+                      ></i>
+                      <p>{{ store.storeType }}</p>
+                    </a>
+                  </router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="f dealhot">
+        <div class="wrap flexCol">
+          <div class="f boxtit flexJus">
+            <label style="font: bold 15px arial"
+              >Các cửa hàng uy tín khác</label
+            >
+            <div class="bst">
+              <h2>
+                <a href="den-led-am-tran" title="Đèn Led âm trần"
+                  >Đèn Led âm trần</a
+                >
+              </h2>
 
-                      <span class="s s5">{{ user.view }}(Lượt xem)</span>
+              <h2><a href="den-ban" title="Đèn bàn">Đèn bàn</a></h2>
+
+              <h2>
+                <a href="den-led-thanh" title="Đèn led thanh">Đèn led thanh</a>
+              </h2>
+
+              <h2>
+                <a href="den-led-tuyp" title="Đèn Tuýp Led">Đèn Tuýp Led</a>
+              </h2>
+
+              <h2><a href="den-led-day" title="Đèn LED Dây">Đèn LED Dây</a></h2>
+            </div>
+          </div>
+
+          <div
+            class="dhpro owl-carousel owl-theme"
+            id="dealhot2"
+            style="opacity: 1; display: block"
+          >
+            <div class="owl-wrapper-outer">
+              <div class="owl-wrapper">
+                <div
+                  v-for="store in allStores.slice(0, 5)"
+                  :key="store.storeId"
+                  class="owl-item active"
+                  style=""
+                >
+                  <router-link
+                    :to="{
+                      name: 'trang-chu',
+                      params: { id: store.storeId },
+                    }"
+                  >
+                    <a style="height: 344px !important" class="item pi">
+                      <div>
+                        <img :src="store.image" :alt="store.image" />
+                      </div>
+                      <h3>{{ store.storeName }}</h3>
+                      <strong style="padding-right: 5px">{{
+                        store.rate
+                      }}</strong>
+                      <i
+                        class="fa-solid fa-star"
+                        style="color: #ffd43b; padding-right: 5px"
+                      ></i>
+                      <p>{{ store.storeType }}</p>
                     </a>
                   </router-link>
                 </div>
@@ -326,72 +188,6 @@
         </div>
       </div>
 
-      <div class="wrap flexCol">
-        <div class="f boxtit flexJus">
-          <label>Các sản phẩm khác</label>
-          <div class="bst">
-            <h2>
-              <a href="den-led-am-tran" title="Đèn Led âm trần"
-                >Đèn Led âm trần</a
-              >
-            </h2>
-
-            <h2><a href="den-ban" title="Đèn bàn">Đèn bàn</a></h2>
-
-            <h2>
-              <a href="den-led-thanh" title="Đèn led thanh">Đèn led thanh</a>
-            </h2>
-
-            <h2>
-              <a href="den-led-tuyp" title="Đèn Tuýp Led">Đèn Tuýp Led</a>
-            </h2>
-
-            <h2><a href="den-led-day" title="Đèn LED Dây">Đèn LED Dây</a></h2>
-          </div>
-        </div>
-        <div
-          style="
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 10px;
-            background-color: #eee !important;
-          "
-        >
-          <ul
-            v-for="user in users.slice(0, 8)"
-            :key="user.id"
-            class="pb Product"
-          >
-            <li style="width: 100% !important" class="pi">
-              <router-link
-                :to="{
-                  name: 'trang-chu-chi-tiet-san-pham',
-                  params: { id: user.productId },
-                }"
-              >
-                <a :title="user.title">
-                  <div data-l="kaadas">
-                    <img :src="user.avatarProduct" :alt="user.avatarProduct" />
-                  </div>
-                  <h3>{{ user.productName }}</h3>
-                  <strong>
-                    {{
-                      (
-                        (user.price * (100 - user.discount)) /
-                        100
-                      )?.toLocaleString()
-                    }}₫
-                    <u>{{ user.price?.toLocaleString() }}₫</u>
-                  </strong>
-                  <span class="s s5">{{ user.view }}(Lượt xem)</span>
-                </a>
-              </router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!--bai viet-->
       <!--dichvu-->
       <div class="f dichvu">
         <ul class="wrap">
@@ -403,9 +199,8 @@
             /></i>
             <span>Hỏi chúng tôi</span>
             <p>
-              Nếu bạn không chắc chắn về những thiết bị nào phù hợp với bạn và
-              nhà của bạn, chỉ cần liên hệ với chúng tôi và để được nhóm hỗ trợ
-              khách hàng trực tuyến của chúng tôi đưa ra đề xuất cho bạn.
+              Nếu bạn không chắc chắn về hệ thống và cách đặt hàng, hãy liên hệ
+              với chúng tôi.
             </p>
           </li>
           <li>
@@ -416,8 +211,8 @@
             /></i>
             <span>Tìm sản phẩm</span>
             <p>
-              Với nhiều sản phẩm để lựa chọn, đây là một nơi tuyệt vời để bắt
-              đầu dự án của bạn.
+              Với các hệ thống siêu thị, tạp hóa, bạn có thể dễ dàng tìm kiếm
+              các món đồ bạn mong đợi.
             </p>
           </li>
           <li>
@@ -428,8 +223,8 @@
             /></i>
             <span>Ghé thăm cửa hàng</span>
             <p>
-              Chào mừng bạn đến với các cửa hàng đèn led hàng đầu Việt Nam -
-              trưng bày đầy đủ các thiết bị đèn, quạt, điện thông minh.
+              Bạn có thể xem địa chỉ của các cửa hàng để có thể đến trực tiếp và
+              lựa chọn sản phẩm.
             </p>
           </li>
           <li>
@@ -514,6 +309,7 @@
         © 2024 bản quyền thuộc về HungNL@gmail.com
         <a href="https://denled.com" title="Siêu thị đèn LED">denled.com</a>
       </div>
+
       <ul id="panel">
         <li>
           <img
@@ -553,7 +349,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { defineComponent, ref, reactive } from "vue";
 import { useRouter } from "vue-router";
@@ -569,76 +364,95 @@ export default defineComponent({
   setup() {
     useMenu().onSelectedKeys(["admin-users"]);
     const userLocal = JSON.parse(localStorage.getItem("auth"));
+    let token ;
+    try{
+      token = JSON.parse(localStorage.getItem("token"));
+    } catch{(error) => {
+          console.error(error);
+        }
+    };
+    
     const apiPrefix = import.meta.env.VITE_API_PREFIX;
-    const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
+    console.log(token);
+
+    try {
+  const eventSource = new EventSource(`${apiPrefix}/notifications?userId=${userLocal.userId}`);
+      // Tạo arr 
+      //notificomp
+  eventSource.onmessage = function(event) {
+    console.log(event.data);
+  };
+
+  eventSource.addEventListener('message', function(event) {
+    console.log("Received message: ", event.data);
+  });
+
+  eventSource.onerror = function(err) {
+    console.error("EventSource failed: ", err);
+    eventSource.close();
+  };
+} catch (e) {
+  console.error(e);
+}
+
+
+
     const router = useRouter();
     const route = useRoute();
     const errors = ref([]);
-    const users = ref([]);
-    const typeStore = ref([]);
-    const token = JSON.parse(localStorage.getItem("token"));
-    const storeId = route.params.id;
-    const storeId2 = ref(route.params.id);
+    const stores = ref([]);
+    const allStores = ref([]);
+
+    const getAllStores = () => {
+      console.log(token);
+      axios
+        .get(`${apiPrefix}/api/v1/admin/store/view`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Thêm token vào headers
+          },
+        })
+        .then((response) => {
+          console.log(response.data.data, "response");
+          allStores.value = response.data.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
     const getUsers = () => {
       axios
-        .get(`${apiPrefix}/api/v1/customer/store/view/${storeId}`, {
+        .get(`${apiPrefix}/api/v1/customer/favor/view`, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Thêm token vào headers
           },
         })
         .then((response) => {
-          users.value = response.data.data;
+          console.log(response.data.data, "response");
+          stores.value = response.data.data;
         })
         .catch((error) => {
           console.error(error);
         });
     };
-    const addMyFarvors = async () => {
-      const formData = new FormData();
-      formData.append("storeid", storeId);
-      try {
-        await axios.post(`${apiPrefix}/api/v1/customer/favor/add`, formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        message.success("đã thêm yêu thích");
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    const getTypeStore = () => {
-      axios
-        .get(`${apiPrefix}/api/v1/customer/${storeId}/info/view`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          console.log(response.data.data);
-          typeStore.value = response.data.data;
-          console.log(typeStore.value.productTypeName);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-    console.log(typeStore.value.productTypeName, "cs");
     onMounted(() => {
+      getAllStores();
       getUsers();
-      getTypeStore();
+      if (!token) {
+        // Xóa localStorage
+        localStorage.removeItem("token");
+        localStorage.removeItem("auth");
+        // Redirect đến trang login
+        router.push("/login");
+      }
     });
-
     return {
       route,
       router,
-      users,
-      storeId2,
+      allStores,
+      stores,
       userLocal,
-      typeStore,
-      addMyFarvors,
     };
-    //
   },
 });
 </script>
@@ -1384,207 +1198,6 @@ a:focus {
   text-decoration: underline;
 }
 
-.sapobanner {
-  position: relative;
-}
-
-.sapobanner figure {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.sapobanner .sapold {
-  padding: 20px 50px;
-  margin: 0 auto;
-  max-width: 800px;
-  border-radius: 15px;
-  font-size: 18px;
-}
-
-.sapobanner h1 {
-  font: bold 42px/35px arial;
-  margin-bottom: 15px;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
-.sapobanner {
-  font-size: 14px;
-  text-align: justify;
-}
-
-.sapobanner a {
-  color: #eee;
-}
-
-.sapobanner h3 {
-  text-align: center;
-  display: block;
-  font: bold 15px arial;
-  margin: 10px 0;
-}
-
-.sapobanner img {
-  display: block;
-  margin: 0 auto;
-  width: auto;
-  height: auto;
-}
-
-.sapobanner .beadcrum a {
-  color: orange;
-}
-
-.sapobanner .beadcrum span {
-  font-size: 13px;
-}
-
-/*thuoc tinh*/
-.property {
-  background: #f8f8f8;
-  padding: 0 0 20px;
-}
-
-.prol {
-  width: 60%;
-}
-
-.pror {
-  width: 40%;
-}
-
-.prol img {
-}
-
-.propertyhead label {
-  font: bold 18px/60px arial;
-  display: inline-block;
-}
-
-.propertyhead label:nth-child(1) {
-  width: 60%;
-}
-
-.propertyhead label:nth-child(2) {
-  width: 40%;
-}
-
-.pl {
-  height: 280px;
-}
-
-.prol figure a {
-  margin-right: 2%;
-  float: left;
-  width: 100%;
-  text-align: center;
-}
-
-.prol figure a span {
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 214px;
-  padding: 5px;
-}
-
-.plnoslide figure a span {
-  width: 130px;
-}
-
-.prol figure a h2 {
-  font: 14px arial;
-  margin-top: 10px;
-}
-
-.hang {
-  width: 100%;
-  overflow-y: auto;
-  text-align: center;
-}
-
-.hang h2 {
-  float: left;
-  margin: 5px;
-  font: 14px/35px arial;
-  padding: 0 10px;
-  border-radius: 10px;
-  background: #000;
-  color: orange;
-}
-
-.cur {
-  border-color: orange !important;
-}
-
-.othpro {
-  margin-left: 20px;
-}
-
-.othpro label {
-  font: 13px/33px arial;
-  color: #000;
-}
-
-.othpro div {
-  display: none;
-  position: absolute;
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 10px 15px;
-  min-width: 310px;
-  z-index: 1;
-}
-
-.othpro li {
-  position: relative;
-  background: #ffd52f;
-  margin-right: 5px;
-  border-radius: 5px;
-}
-
-.othpro li:hover > div {
-  display: block;
-}
-
-.othpro div a {
-  width: 100%;
-  float: left;
-  font: 13px/30px arial;
-  color: #555;
-  cursor: pointer;
-}
-
-.othpro div a h2 {
-  font: 13px/30px arial;
-  color: #555;
-  margin: 0;
-  display: inline-block;
-}
-
-.othpro div a:before,
-.prol h2:before {
-  font: 14px/1px FontAwesome;
-  margin-right: 5px;
-  color: #999;
-}
-
-.on:before,
-.plon h2:before {
-  content: "\f192" !important;
-}
-
-.othpro div a:before,
-.ploff h2:before {
-  content: "\f10c";
-}
-
 /*box-tit*/
 .box-tit {
   height: 40px;
@@ -1954,6 +1567,18 @@ textarea {
   font-weight: normal;
 }
 
+.vcart2:before {
+  font: 21px/1 FontAwesome;
+  padding-right: 2px;
+}
+
+.vcart2 {
+  color: #000;
+  padding-left: 14px;
+  cursor: pointer;
+  position: relative;
+  font-size: 18px;
+}
 .hl:before,
 .oh:before {
   background: url("/Content/img/i/icon-logo.png") no-repeat;
@@ -2001,18 +1626,6 @@ textarea {
   color: #ea9b40 !important;
 }
 
-.vcart2:before {
-  font: 21px/1 FontAwesome;
-  padding-right: 2px;
-}
-
-.vcart2 {
-  color: #000;
-  padding-left: 14px;
-  cursor: pointer;
-  position: relative;
-  font-size: 18px;
-}
 .nav li {
   position: static;
 }
@@ -2898,15 +2511,13 @@ body {
 
 .pi {
   width: 19%;
-  height: 350px;
+  height: 510px;
   float: left;
   padding: 10px;
   position: relative;
   margin: 0.5%;
   background: #fff;
   color: #333;
-  border-radius: 5%;
-  border: 1px solid #333;
 }
 
 .pi a {
@@ -3139,6 +2750,11 @@ body {
   margin-bottom: 30px;
 }
 
+.dealhot2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 .dhtit {
   padding: 13px 0 8px;
   background: #bf2121;
@@ -3167,11 +2783,25 @@ body {
   width: auto !important;
 }
 
+.dealhot2 a {
+  padding: 10px;
+  color: #333;
+  width: auto !important;
+}
+
 .dealhot a div {
   height: 240px;
 }
 
+.dealhot2 a div {
+  height: 240px;
+}
+
 .dealhot a h3 {
+  font-size: 15px;
+}
+
+.dealhot2 a h3 {
   font-size: 15px;
 }
 
@@ -3181,7 +2811,17 @@ body {
   margin: 0 auto;
 }
 
+.dealhot2 figure img {
+  width: auto !important;
+  clear: both;
+  margin: 0 auto;
+}
+
 .dealhot .bq u {
+  font: 13px/14px arial;
+}
+
+.dealhot2 .bq u {
   font: 13px/14px arial;
 }
 
@@ -3268,5 +2908,10 @@ body {
   overflow: hidden;
   float: left;
   width: 100%;
+}
+
+.owl-wrapper {
+  background-color: #bfbfbf;
+  padding: 15px 10px;
 }
 </style>
