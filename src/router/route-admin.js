@@ -1,7 +1,25 @@
+const userNOW = JSON.parse(localStorage.getItem("auth"));
 const adminRoutes = [
   {
     path: "/",
-    redirect: { path: "/trang-chu-stores" }, // redirect property
+    redirect: (to) => {
+      if (userNOW) {
+        console.log(userNOW.role)
+
+        switch (userNOW.role) {
+          case 'ADMIN':
+            return { path: '/danh-sach-nguoi-dung' };
+          case 'USER':
+            return { path: '/trang-chu-stores' };
+          case 'MANAGER':
+            return { path: `/doanh-thu-store/${userNOW.storeId}` };
+          case 'SHIPPER':
+            return { path: '/danh-sach-don' }; // Default redirect if role is unrecognized
+        }
+      } else {
+        return { path: '/login' }; // Redirect to login if no user is logged in
+      }
+    }, // redirect property
     component: () => import("../layouts/_share.vue"),
     children: [
       {
@@ -11,103 +29,38 @@ const adminRoutes = [
         component: () => import("../views/dashboards/index.vue"),
       },
       {
-        path: "yeu-cau-cap-nhan",
-        name: "admin-requestdcdlabels",
-        meta: { title: "Yêu cầu cấp nhãn" },
-        component: () => import("../views/requestdcdlabels/index.vue"),
-      },
-
-      {
-        path: "yeu-cau-cap-nhan/them-moi",
-        name: "admin-requestdcdlabels-create",
-        meta: { title: "Thêm mới - Yêu cầu cấp nhãn" },
-        component: () => import("../views/requestdcdlabels/create.vue"),
-      },
-      {
-        path: "yeu-cau-cap-nhan/sua/:id",
-        name: "admin-requestdcdlabels-edit",
-        meta: { title: "Sửa - Yêu cầu cấp nhãn" },
-        component: () => import("../views/requestdcdlabels/edit.vue"),
-      },
-      {
-        path: "ket-qua-do",
-        name: "admin-measurementresultdatas",
-        meta: { title: "Kết quả đo" },
-        component: () => import("../views/measurementresultdatas/index.vue"),
-      },
-      {
         path: "danh-sach-don",
         name: "danh-sach-don",
         meta: { title: "Dánh sách đơn" },
-        component: () => import("../views/users/dsDorder.vue"),
+        component: () => import("../views/_shippers/danhsachdonhang.vue"),
       },
       {
         path: "danh-sach-don-da-nhan",
         name: "danh-sach-don-da-nhan",
         meta: { title: "Dánh sách đơn đã nhận" },
-        component: () => import("../views/users/dsAccept.vue"),
+        component: () => import("../views/_shippers/danhsachdanhan.vue"),
       },
       {
         path: "danh-sach-don-da-giao",
         name: "danh-sach-don-da-giao",
         meta: { title: "Dánh sách đơn đã giao" },
-        component: () => import("../views/users/dsOrdero.vue"),
+        component: () => import("../views/_shippers/danhsachdagiao.vue"),
       },
-      {
-        path: "ket-qua-do/them-moi/:id",
-        name: "admin-measurementresultdatas-create",
-        meta: { title: "Thêm mới - Kết quả đo" },
-        component: () => import("../views/measurementresultdatas/create.vue"),
-      },
+
       {
         path: "san-pham/chi-tiet/:id",
         name: "admin-chi-tiet-san-pham",
         meta: { title: "Chi tiết - sản phẩm" },
         component: () => import("../views/users/detailsProduct.vue"),
       },
+      {
+        path: "don-hang/chi-tiet/:id",
+        name: "admin-chi-tiet-don-hang",
+        meta: { title: "Chi tiết - đơn hàng" },
+        component: () => import("../views/_managers/detailsOrderbyStore.vue"),  
+      },
 
-      {
-        path: "ket-qua-do/sua/:id/:recordingDate",
-        name: "admin-measurementresultdatas-edit",
-        meta: { title: "Sửa - Kết quả đo" },
-        component: () => import("../views/measurementresultdatas/edit.vue"),
-      },
-      {
-        path: "hang-muc-do",
-        name: "admin-measurementitems",
-        meta: { title: "Hạng mục đo" },
-        component: () => import("../views/measurementitems/index.vue"),
-      },
-      {
-        path: "hang-muc-do/them-moi",
-        name: "admin-measurementitems-create",
-        meta: { title: "Thêm mới - Hạng mục đo" },
-        component: () => import("../views/measurementitems/create.vue"),
-      },
-      {
-        path: "hang-muc-do/sua/:id",
-        name: "admin-measurementitems-edit",
-        meta: { title: "Sửa - Hạng mục đo" },
-        component: () => import("../views/measurementitems/edit.vue"),
-      },
-      {
-        path: "dung-cu-do",
-        name: "admin-measuringtools",
-        meta: { title: "Dụng cụ đo" },
-        component: () => import("../views/measuringtools/index.vue"),
-      },
-      {
-        path: "dung-cu-do/them-moi",
-        name: "admin-measuringtools-create",
-        meta: { title: "Thêm mới - Dụng cụ đo" },
-        component: () => import("../views/measuringtools/create.vue"),
-      },
-      {
-        path: "dung-cu-do/sua/:id",
-        name: "admin-measuringtools-edit",
-        meta: { title: "Sửa - Dụng cụ đo" },
-        component: () => import("../views/measuringtools/edit.vue"),
-      },
+
       {
         path: "thanh-vien",
         name: "admin-users",
@@ -118,19 +71,25 @@ const adminRoutes = [
         path: "danh-sach-store",
         name: "admin-store",
         meta: { title: "Dánh sách store" },
-        component: () => import("../views/users/storeAll.vue"),
+        component: () => import("../views/admins/storeAll.vue"),
+      },
+      {
+        path: "danh-sach-nguoi-dung",
+        name: "admin-account",
+        meta: { title: "Dánh sách store" },
+        component: () => import("../views/admins/accountAll.vue"),
       },
       {
         path: "importExport/:id",
         name: "importExport",
         meta: { title: "Dánh sách hóa đơn" },
-        component: () => import("../views/users/importExport.vue"),
+        component: () => import("../views/_managers/importExport.vue"),
       },
       {
         path: "importExport/add-new/:id",
         name: "importExport/add-new",
         meta: { title: "Thêm hóa đơn" },
-        component: () => import("../views/users/createExport.vue"),
+        component: () => import("../views/_managers/createExport.vue"),
       },
       {
         path: "profile-user",
@@ -138,38 +97,43 @@ const adminRoutes = [
         meta: { title: "Thông tin cá nhân" },
         component: () => import("../views/users/profileUser.vue"),
       },
-
+      {
+        path: "profile-store",
+        name: "profile-store",
+        meta: { title: "Thông tin cửa hàng" },
+        component: () => import("../views/_managers/storeProfile.vue"),
+      },
       // importExport
       {
         path: "danh-sach-order-store/:id",
         name: "danh-sach-order-store",
         meta: { title: "Dánh sách order" },
-        component: () => import("../views/users/detailsOrderbyStore.vue"),
+        component: () => import("../views/_managers/detailsOrderbyStore.vue"),
       },
       {
         path: "order-by-user/:id/customer/:customerId",
         name: "order-by-user",
         meta: { title: "Danh sách sản phẩm đã mua" },
-        component: () => import("../views/users/orderByUser.vue"),
+        component: () => import("../views/_managers/orderByUser.vue"),
       },
       {
         path: "doanh-thu-store/:id",
         name: "doanh-thu-store",
         meta: { title: "Doanh thu" },
-        component: () => import("../views/users/revenueStore.vue"),
+        component: () => import("../views/_managers/revenueStore.vue"),
       },
       // detailsOrderbyStore
       {
         path: "ProductByStore/:id",
         name: "ProductByStore",
         meta: { title: "ProductByStore" },
-        component: () => import("../views/users/storeProduct.vue"),
+        component: () => import("../views/_managers/storeProduct.vue"),
       },
       {
         path: "product/edit/:id",
         name: "admin-product-edit",
         meta: { title: "sửa - product" },
-        component: () => import("../views/users/editProduct.vue"),
+        component: () => import("../views/_managers/editProduct.vue"),
       },
 
       {
@@ -182,26 +146,26 @@ const adminRoutes = [
         path: "store/info-them-moi",
         name: "store/info-them-moi",
         meta: { title: "Thêm mới - info store" },
-        component: () => import("../views/users/createInfoStore.vue"),
+        component: () => import("../views/_managers/createInfoStore.vue"),
       },
       {
         path: "product-type/them-moi/:id",
         name: "product-type/them-moi",
         meta: { title: "Thêm mới - product-type" },
-        component: () => import("../views/users/createProductType.vue"),
+        component: () => import("../views/_managers/createProductType.vue"),
       },
       {
-        path: "store/staff/:id",
-        name: "admin-store-all-staff",
+        path: "store/customer/:id",
+        name: "admin-store-all-customer",
         meta: { title: "Thêm mới - product-type" },
-        component: () => import("../views/users/detailsStaffByStore.vue"),
+        component: () => import("../views/_managers/detailCustomerByStore.vue"),
       },
 
       {
         path: "product/them-moi/:id",
         name: "product/them-moi",
         meta: { title: "Thêm mới - product" },
-        component: () => import("../views/users/createProduct.vue"),
+        component: () => import("../views/_managers/createProduct.vue"),
       },
 
 
@@ -230,55 +194,27 @@ const adminRoutes = [
         component: () => import("../views/users/edit.vue"),
       },
       {
-        path: "vai-tro",
-        name: "admin-roles",
-        meta: { title: "Vai trò" },
-        component: () => import("../views/roles/index.vue"),
-      },
-      {
-        path: "vai-tro/them-moi",
-        name: "admin-roles-create",
-        meta: { title: "Thêm mới - Vai trò" },
-        component: () => import("../views/roles/create.vue"),
-      },
-      {
-        path: "vai-tro/sua/:id",
-        name: "admin-roles-edit",
-        meta: { title: "Sửa - Vai trò" },
-        component: () => import("../views/roles/edit.vue"),
-      },
-      {
         path: "hoa-don/sua/:id",
         name: "hoa-don/sua",
         meta: { title: "Sửa - hoá đơn" },
-        component: () => import("../views/users/editImport.vue"),
-      },
-      {
-        path: "cai-dat",
-        name: "admin-themeoptions",
-        meta: { title: "Cài đặt" },
-        component: () => import("../views/settings/index.vue"),
-      },
-      {
-        path: "logs",
-        name: "admin-logs",
-        meta: { title: "Logs" },
-        component: () => import("../views/show-logs/index.vue"),
-      },
-      {
-        path: "logs/chi-tiet/:id",
-        name: "admin-logs-detail",
-        meta: { title: "Chi tiết - Logs" },
-        component: () => import("../views/show-logs/detail.vue"),
+        component: () => import("../views/_managers/editImport.vue"),
       },
       {
         path: "product-type/info",
         name: "product-type/info",
         meta: { title: "Thêm mới - product-type" },
-        component: () => import("../views/users/createProductTypeCo.vue"),
+        component: () => import("../views/_managers/createProductTypeCo.vue"),
       },
     ],
   },
+  {
+    component: () => import("../layouts/_share.vue"),
+    children: [
+
+
+    ],
+  },
+
   {
     path: "/login",
     name: "login",
@@ -310,43 +246,43 @@ const adminRoutes = [
     path: "/trang-chu/:id",
     name: "trang-chu",
     meta: { title: "Trang chủ" },
-    component: () => import("../views/home/homeLayout.vue"),
+    component: () => import("../views/_customers/homeLayout.vue"),
   },
   {
     path: "/trang-chu-stores",
     name: "trang-chu-stores",
     meta: { title: "Trang chủ cửa hàng" },
-    component: () => import("../views/home/storeAllDs.vue"),
+    component: () => import("../views/_customers/storeAllDs.vue"),
   },
   {
     path: "/trang-chu-chi-tiet-san-pham/:id",
     name: "trang-chu-chi-tiet-san-pham",
     meta: { title: "Trang chủ" },
-    component: () => import("../views/home/DetailsProductHome.vue"),
+    component: () => import("../views/_customers/DetailsProductHome.vue"),
   },
   {
-    path: "/frivStore",
-    name: "frivStore",
-    meta: { title: "frivStore" },
-    component: () => import("../views/home/frivStore.vue"),
+    path: "/favstore",
+    name: "favstore",
+    meta: { title: "favstore" },
+    component: () => import("../views/_customers/frivStore.vue"),
   },
   {
     path: "/ordered",
     name: "ordered",
     meta: { title: "ordered" },
-    component: () => import("../views/home/Ordered.vue"),
+    component: () => import("../views/_customers/Ordered.vue"),
   },
   {
     path: "/trang-chu/gio-hang",
     name: "trang-chu-gio-hang",
     meta: { title: "Giỏ hàng" },
-    component: () => import("../views/home/cartView.vue"),
+    component: () => import("../views/_customers/cartView.vue"),
   },
   {
     path: "/profile-client",
     name: "profile-client",
     meta: { title: "Thông tin cá nhân" },
-    component: () => import("../views/users/profileUserNew.vue"),
+    component: () => import("../views/_customers/profileUserNew.vue"),
   },
   {
     path: "/change-password",

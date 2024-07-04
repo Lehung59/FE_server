@@ -41,6 +41,7 @@ import "./static/fontawesome/css/all.min.css";
 import "ant-design-vue/dist/antd.min.css";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "bootstrap/dist/css/bootstrap-utilities.min.css";
+import '@coreui/coreui/dist/css/coreui.min.css'
 
 const app = createApp(App);
 app.use(createPinia());

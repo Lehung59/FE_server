@@ -11,7 +11,7 @@ const router = createRouter({
  * **/
 router.beforeEach(async (to, from, next) => {
   // meta title
-  document.title = to.meta.title + " - Quản lý dụng cụ đo";
+  document.title = to.meta.title + " - Quản lý bán và mua hàng";
   // check authencicate
     next();
 });

@@ -59,6 +59,10 @@
                             <iframe style="display: none"></iframe>
                         </div>
                     </div>
+                    <div style="display: flex; justify-content: center; align-items: center ; padding-bottom:10px;">
+                        <Spin :spinning="spinning">
+                        </Spin>
+                    </div>
                     <div class="text-center mb-3" style="clear: both">
                         <button class="btn-login" type="submit">Gửi mã</button>
                     </div>
@@ -70,14 +74,19 @@
 <script>
 import { defineComponent, computed, ref, reactive, onMounted } from "vue";
 import "ant-design-vue/dist/antd.min.css";
-import { message } from "ant-design-vue";
+import { message, Spin } from "ant-design-vue";
 import { useAuthStore } from "../../stores/auth.store.js";
 import axios from "axios";
 
 export default defineComponent({
+    components: {
+        Spin,
+    },
     setup() {
         const apiPrefix = import.meta.env.VITE_API_PREFIX;
         const authStore = useAuthStore();
+        const spinning = ref(false);
+
         const formState = reactive({
             username: "",
         });
@@ -93,6 +102,7 @@ export default defineComponent({
             const newValue = {
                 email: username,
             };
+            spinning.value = true;
             axios
                 .post(
                     `${apiPrefix}/api/v1/auth/forgetpassword`,
@@ -100,13 +110,14 @@ export default defineComponent({
                 )
                 .then((res) => {
                     console.log(res.data);
-                    
+                    spinning.value = false;
                     message.success("Đã gửi mã xác thực!");
 
                         window.location.href = "/checkresetpassword";
                 
                 })
                 .catch((err) => {
+                    spinning.value = false;
                     console.log(err);
                     if (err.response && err.response.status == 404) {
                         showErrorToast('Thất bại!', 'Không tồn tại mail!');
@@ -136,6 +147,7 @@ export default defineComponent({
             onFinishFailed,
             onFinish,
             disabled,
+            spinning
         };
     },
 });
