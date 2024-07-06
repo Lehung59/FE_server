@@ -18,6 +18,16 @@
         </a-button>
       </div>
     </div>
+    <div class="row mb-3">
+            <div class="col-12">
+                <a-form @submit.prevent="onSearch">
+                    <a-form-item>
+                        <a-input placeholder="Tìm kiếm sản phẩm" v-model:value="searchKeyword" @pressEnter="onSearch" />
+                    </a-form-item>
+                    <a-button type="primary" @click="onSearch">Tìm kiếm</a-button>
+                </a-form>
+            </div>
+        </div>
     <div class="row">
       <div class="col-12">
         <a-table :dataSource="users" :columns="columns" :scroll="{ x: 576 }" :pagination="false">
@@ -25,9 +35,7 @@
             <template v-if="column.key === 'index'">
               <span>{{ index + 1 }}</span>
             </template>
-            <template v-if="column.key === 'userName'">
-              <span>{{ record.storeName }}</span>
-            </template>
+
             <template v-if="column.key === 'imageSp'">
               <span>{{ record.quantity }}</span>
             </template>
@@ -38,11 +46,11 @@
               <span>{{ formatDate(record.createdAt) }}</span>
             </template>
             <template v-if="column.key === 'email'">
-              <span>{{ record.price }}</span>
+              <span>{{ record.price }}₫</span>
             </template>
 
             <template v-if="column.key === 'alltotal'">
-              <span>{{ record.priceTotal }}</span>
+              <span>{{ record.priceTotal }}₫</span>
             </template>
             <template v-if="column.key === 'status'">
               <span>{{ getStatus(record) }}</span>
@@ -52,7 +60,7 @@
             name: 'admin-chi-tiet-san-pham',
             params: { id: record.productId },
           }">
-                <a-button title="Khóa" type="dashed" size="small" shape="" class="me-2 text-warning">xem
+                <a-button title="Xem chi tiết" type="dashed" size="small" shape="" class="me-2 text-warning">xem
                 </a-button>
               </router-link>
               <router-link :to="{
@@ -71,10 +79,11 @@
           </template>
         </a-table>
         <div class="col-12">
-          <a-pagination @change="onChange" v-model:current="pageParam.current" :total="pageParam.totalRecord"
-            :pageSize="pageParam.pageSize" :show-total="(total, range) => `${range[0]}-${range[1]} of ${total} items`
-            " class="mt-2 text-end" />
-        </div>
+                    <a-pagination @change="onChange" v-model:current="pageParam.currentPage"
+                        :total="pageParam.totalItems" :pageSize="pageParam.pageSize"
+                        :show-total="(total, range) => `${range[0]}-${range[1]} của ${total} sản phẩm`"
+                        class="mt-2 text-end" />
+                </div>
       </div>
     </div>
   </a-card>
@@ -103,25 +112,17 @@ export default defineComponent({
     const storeId2 = ref(route.params.id);
     console.log(storeId2._value, "storeId2");
     const storeId = JSON.parse(localStorage.getItem("auth")).storeId;
-
+const searchKeyword = ref("");
     const pageParam = reactive({
-      current: Object.keys(route.query).length > 0 ? route.query.PageNumber : 1,
-      pageNumber:
-        Object.keys(route.query).length > 0 ? route.query.PageNumber : 1,
-      pageSize: Object.keys(route.query).length > 0 ? route.query.PageSize : 10,
-      totalRecord: 0,
-      userName: Object.keys(route.query).length > 0 ? route.query.UserName : "",
-      statusFilter: false,
-    });
+            currentPage: 1,
+            pageSize: 10,
+            totalItems: 0,
+            totalPages: 0
+        });
     const columns = [
       {
         title: "#",
         key: "index",
-      },
-      {
-        title: "Tên cửa hàng",
-        dataIndex: "userName",
-        key: "userName",
       },
       {
         title: "Số lượng",
@@ -179,10 +180,11 @@ export default defineComponent({
       // Ghép lại thành định dạng mong muốn
       return `${hours}:${minutes}:${seconds} ${day}-${month}-${year}`;
     };
-    const getUsers = (args) => {
+    const getUsers = (page, size, keyword = "" ) => {
       axios
         .get(
           `${apiPrefix}/api/v1/management/${storeId}/import/view`, {
+            params: { page, size, keyword },
           headers: {
             Authorization: `Bearer ${token}`, // Thêm token vào headers
           },
@@ -191,6 +193,8 @@ export default defineComponent({
         .then((response) => {
           console.log(response.data.data, "response");
           users.value = response.data.data;
+          pageParam.totalItems = response.data.pagination.totalItems;
+          pageParam.totalPages = response.data.pagination.totalPages;
         })
         .catch((error) => {
           console.error(error);
@@ -252,34 +256,22 @@ export default defineComponent({
         });
     };
     //
-    onUpdated(() => {
-      //
-      if (Object.keys(route.query).length === 0) {
-        pageParam.current =
-          Object.keys(route.query).length > 0 ? route.query.PageNumber : 1;
-        pageParam.pageNumber =
-          Object.keys(route.query).length > 0 ? route.query.PageNumber : 1;
-        pageParam.pageSize =
-          Object.keys(route.query).length > 0 ? route.query.PageSize : 10;
-        pageParam.userName =
-          Object.keys(route.query).length > 0 ? route.query.UserName : "";
-        pageParam.statusFilter = true;
-        getUsers(pageParam);
-      }
-    });
+
     onMounted(() => {
       // chay lan dau tien
-      getUsers(pageParam);
+      getUsers(pageParam.currentPage, pageParam.pageSize);
     });
     //
-    function onChange(page, pageSize) {
-      pageParam.pageNumber = page;
-      pageParam.pageSize = pageSize;
-      //
-      pageParam.statusFilter = true;
-      getUsers(pageParam);
-    }
+    const onChange = (page, pageSize) => {
+            pageParam.currentPage = page;
+            pageParam.pageSize = pageSize;
+            getUsers(page, pageSize, searchKeyword.value);
+        };
     //
+    const onSearch = () => {
+            pageParam.currentPage = 1;
+            getUsers(pageParam.currentPage, pageParam.pageSize, searchKeyword.value);
+        };
     const clickFrmFilter = (event) => {
       pageParam.statusFilter = true;
       getUsers(pageParam);
@@ -288,6 +280,8 @@ export default defineComponent({
     return {
       route,
       getStatus,
+      searchKeyword,
+      onSearch,
       router,
       storeId2,
       storeId,

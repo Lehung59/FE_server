@@ -212,10 +212,26 @@ export default defineComponent({
 
     };
 
+    const addNotification = (payload) => {
+      notiLists.value.push({
+        id: Date.now(),
+        title: payload.notification.title,
+        body: payload.notification.body,
+        notiStatus: false
+      });
+    };
+
 
 
     onMounted(() => {
       getNoti();
+
+      navigator.serviceWorker.addEventListener('message', event => {
+        if (event.data && event.data.msg === 'new-notification') {
+          addNotification(event.data.data);
+        }
+      });
+
     });
 
     const unreadCount = computed(() => {

@@ -108,17 +108,26 @@
             <img v-else :src="userData.avatar" class="avatar" alt="avatar" />
           </div>
         </a-form-item>
+        <div style="display: flex; justify-content: center; align-items: center ; padding-bottom:10px;">
+                    <Spin :spinning="spinning">
+                        <!-- Nội dung của bạn ở đây -->
+                    </Spin>
+                </div>
       </a-form>
     </a-modal>
   </div>
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed,defineComponent } from 'vue';
 import axios from 'axios';
-import { message } from 'ant-design-vue';
+import { message, Spin} from 'ant-design-vue';
 
-export default {
+export default defineComponent ({
+  components: {
+
+    Spin
+  },
   setup() {
     const userData = ref(null);
     const apiPrefix = import.meta.env.VITE_API_PREFIX;
@@ -143,6 +152,7 @@ export default {
 
       }
     }
+    const spinning = ref(false);
 
     const form = ref(null);
     const form2 = ref(null);
@@ -449,6 +459,8 @@ export default {
 
     const handleOk = async () => {
       try {
+        spinning.value = true;
+
         const token = JSON.parse(localStorage.getItem('token'));
         const formData2 = new FormData();
         formData2.append('firstname', formData.value.firstname);
@@ -466,10 +478,14 @@ export default {
         });
         message.success('Cập nhật thông tin thành công');
         isModalVisible.value = false;
+        spinning.value = false;
+
         getUserData(); // Tải lại dữ liệu sau khi cập nhật thành công
       } catch (error) {
         console.error(error);
         message.error('Có lỗi xảy ra khi cập nhật thông tin');
+        spinning.value = false;
+
       }
     };
 
@@ -487,6 +503,7 @@ export default {
 
     return {
       userData,
+      spinning,
       handleChange,
       provinceOptions,
       wardOptions,
@@ -529,7 +546,7 @@ export default {
 
     };
   }
-};
+});
 </script>
 
 <style scoped>

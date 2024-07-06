@@ -179,6 +179,14 @@ export default defineComponent({
       window.location.href = "http://localhost:5173/login"
 
     };
+    const addNotification = (payload) => {
+      notiLists.value.push({
+        id: Date.now(),
+        title: payload.notification.title,
+        body: payload.notification.body,
+        notiStatus: false
+      });
+    };
 
     const getNoti = () => {
       axios
@@ -226,16 +234,20 @@ export default defineComponent({
       return notiLists.value.slice().sort((a, b) => b.notiId - a.notiId);
     });
 
-
+    const unreadCount = computed(() => {
+      return notiLists.value.filter(item => !item.notiStatus).length;
+    });
 
     onMounted(() => {
       // chay lan dau tien
       getNoti();
+      window.addEventListener('new-notification', (event) => {
+        // Add new notification to notiLists
+        console.log('co tin moi')
+      });
     });
 
-    const unreadCount = computed(() => {
-      return notiLists.value.filter(item => !item.notiStatus).length;
-    });
+
     return {
       authStore,
       userLocal,

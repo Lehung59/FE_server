@@ -60,7 +60,7 @@
                   <span>Quay lại</span>
                 </a-button>
                 <a-button class="me-0 me-sm-2 mb-3 mb-sm-0 bg-info text-light" @click="resetForm">Reset</a-button>
-                <a-button type="primary" html-type="submit" class="bg-success" :loading=formState.loading>Lưu</a-button>
+                <a-button type="primary" html-type="submit" class="bg-success" :loading="spinning">Lưu</a-button>
               </a-form-item>
             </div>
           </div>
@@ -90,6 +90,7 @@ export default defineComponent({
     const authStoreClaim = ref(useAuthStore().user.roleClaimDetail);
     const apiPrefix = import.meta.env.VITE_API_PREFIX;
     const router = useRouter();
+    const spinning = ref(false);
     const users = reactive({
       optionsLevelManage: [],
       optionsRole: [],
@@ -259,8 +260,8 @@ export default defineComponent({
     }
     const createUsers = () => {
       const formData = new FormData();
-      formState.loading = true;
-
+      spinning.value = true;
+      console.log(spinning.value,'formstatueload')
       try {
         formData.append("producttypename", formState.productTypeName);
 
@@ -316,7 +317,7 @@ export default defineComponent({
       } catch (error) {
 
       } finally {
-        formState.loading = false; // Tắt trạng thái chờ khi hoàn thành
+        spinning.value = false; // Tắt trạng thái chờ khi hoàn thành
       }
 
 

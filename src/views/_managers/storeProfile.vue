@@ -85,6 +85,12 @@
                         <img v-else :src="userData.avatar" class="avatar" alt="avatar" />
                     </div>
                 </a-form-item>
+                <div style="display: flex; justify-content: center; align-items: center ; padding-bottom:10px;">
+                    <Spin :spinning="spinning">
+                        <!-- Nội dung của bạn ở đây -->
+                    </Spin>
+                </div>
+
             </a-form>
         </a-modal>
     </div>
@@ -93,9 +99,13 @@
 <script>
 import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
-import { message } from 'ant-design-vue';
+import { message, Spin } from 'ant-design-vue';
 
-export default {
+export default defineComponent({
+    components: {
+
+        Spin
+    },
     setup() {
         const userData = ref(null);
         const apiPrefix = import.meta.env.VITE_API_PREFIX;
@@ -431,7 +441,7 @@ export default {
 
         };
     }
-};
+});
 </script>
 
 <style scoped>

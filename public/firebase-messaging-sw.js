@@ -4,6 +4,7 @@
 importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js');
 
+
 // Initialize the Firebase app in the service worker by passing in
 // your app's Firebase config object.
 // https://firebase.google.com/docs/web/setup#config-object
@@ -30,8 +31,13 @@ messaging.onBackgroundMessage((payload) => {
     const notificationTitle = payload.notification.title;
     const notificationOptions = {
       body: payload.notification.body,
+      icon: './logo1.jpg'
 
     };
   
     self.registration.showNotification(notificationTitle, notificationOptions);
+
+    const event = new CustomEvent('new-notification', { detail: payload.notification });
+    self.dispatchEvent(event);
+
   });
